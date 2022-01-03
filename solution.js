@@ -1,18 +1,5 @@
-function reptMethod(){
-    // String.repeat(n) Method : String 반복
-    const str = "A";
-
-    console.log(str.repeat(3)); // 반복횟수는 양의 정수
-
-    // Array.join() Method : 배열의 모든 요소를 연결해 하나의 문자열로 만든다
-    const elements = ['A', 'B', 'C'];
-
-    console.log(elements.join());
-    console.log(elements.join(''));
-    console.log(elements.join('-'));
-}
+// Q1. 직사각형 별찍기
 function q1(){
-    // Q1. 직사각형 별찍기
     // 표준 입력으로 두 개의 정수 a, b가 주어지고
     // 별(*) 문자를 이용해 가로의 길이가 a, 세로의 길이가 b인 직사각형 형태 출력
 
@@ -70,6 +57,7 @@ function q1(){
     //console.log((('*').repeat(a)+ '\n').repeat(b))
 }
 
+// 별찍어서 트리 만들기
 function tree(){
     var resultSpace = [" "," "," ", " "," "," "," "," "," "," "];
     var result = "";
@@ -84,25 +72,67 @@ function tree(){
     }
 }
 
-function q2(){
-    // Q2. x만큼 간격이 있는 n개의 숫자
+// Q2. x만큼 간격이 있는 n개의 숫자
+function q2(x, n){
+    // 정수 x와 자연수 n을 입력 받아, x부터 시작해 x씩 증가하는 숫자
+    // n개 지니는 리스트를 리턴해야 한다.
+    // var x = 2, n = 5;
 
+    // (1)
+    // var tmp = x;
+    // var answer = [];
+    // for(var i = 0; i<n ; i++){
+    //     answer.push(tmp);
+    //     tmp = x + tmp;
+    // }
+
+    //(2)
+    // return answer;
+    return nNumbers(x, n);
+    // expected output : [2, 4, 6, 8, 10]
 }
 
+// Q2의 2 번째 문제풀이
+const nNumbers = (x, n) =>{
+    return Array.from({length: n},(v,index) => (index+1)*x);
+    };
 
+// 행렬의 덧셈
+function q3() {
+    // 2개의 행렬 arr1과 arr2를 입력받아(행과 열의 크기가 같아야 함)
+    // 행렬 덧셈의 결과를 반환하는 함수 만들기
+    var answer = [];
+    var arr1 = ([[5,2], [2,3]]);
+    var arr2 = [[3,4], [5,6]];
 
+    for(var i = 0 ; i < arr1.length; i++){
+        var tmp = [];
+        for(var j = 0 ; j < arr1[i].length; j++){
+            tmp.push([arr1[i][j] + arr2[i][j]]);
+        }
+        answer.push(tmp);
+    }
+    return answer;
+}
 
-
-
-
-
+// 함수 로드
 function load(){
     //q1();
-    tree();
+    // tree();
+    // mapMethod()
+    // var outputQ2 = q2(2, 5);
+    // console.log(outputQ2);
+
+    // const a = q2(2,5);
+    // console.log(a);
+
+    const b = q3();
+    console.log(b);
 }
 
+// 초기화
 function init(){
     load();
     }
-    
-    init();
+
+init();
