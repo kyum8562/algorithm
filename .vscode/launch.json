@@ -6,9 +6,10 @@
     "configurations": [
         {
             "name": "Python: Current File",
-            "type": "python",
+            "type": "node",
+            //"type": "python",
             "request": "launch",
-            "program": "${file}",
+            "program": "${file}/solution.js",
             "console": "integratedTerminal"
         }
     ]

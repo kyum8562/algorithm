@@ -1,4 +1,4 @@
-# binary Searching
+# binary Searching, O(logN)
 import random
 
 
@@ -9,7 +9,7 @@ def binary_search(target, arr):
     end = len(arr)-1
 
     while start <= end:
-        mid = round((start + end)/2)
+        mid = (start + end) // 2
 
         if arr[mid] == target:
             return mid
