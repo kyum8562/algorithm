@@ -193,8 +193,86 @@ function q5() {
     // var result = recursionSol(18);
     // console.log(result);
 
+    // (5)
+    // return !(x % (x + "").split("").reduce((a, b) => +b + +a ));
 }
 
+// Q6. 평균 구하기
+function q6() {
+    // 정수를 담고있는 배열 arr의 평균값 리턴하기
+    var answer = 0;
+    var arr = [1, 2, 3, 4];
+    
+    // (1)
+    // var sum = 0;
+    // for(var i=0; i< arr.length; i++){
+    //     sum += arr[i];
+    // }
+    
+    // answer = sum/arr.length;
+    // console.log(answer);
+    
+    // (2) reduce -1
+    console.log(`평균값 : ${arr.reduce((a,b) => a + b) / arr.length}`)
+
+    // (3) reduce -2
+    var result = arr.reduce(function(a,b){ return a + b})/arr.length;
+    console.log(`평균값2 : ${result}`);
+}
+
+// Q7. 콜라츠 추측
+function q7() {
+    // 주어진 수가 1이 될때까지 다음 작업을 반복하면,
+    // 모든 수를 1로 만들 수 있다는 추측
+    // [작업]
+    // 1-1. 입력된 수가 짝수라면 2로 나눈다.
+    // 1-2. 입력된 수가 홀수라면 3을 곱하고 1을 더한다.
+    // 2. 결과로 나온 수에 같은 작업을 1이 될 떄 까지 반복한다.
+    // [작업]의 횟수를 반환 하는 문제
+    // [작업]을 500번 반복해도 1이 되지않는다면 -1 리턴
+
+    var answer = 0;
+    var x = 6;
+    var cnt = 0;
+
+    // (1)
+    // while(x != 1){
+    //     x%2 == 0 ? x = x/2 : x = x*3 +1
+    //     cnt += 1;
+
+    //     if(cnt == 500){
+    //         return -1;
+    //     }
+    // }
+    // answer = cnt;
+    // console.log(answer);
+
+    // (2) (1) 리팩토링
+    // while(x !=1 && cnt != 500){
+    //     x%2 == 0 ? x = x/2 : x = x*3 +1
+    //     answer ++;
+    // }
+    // console.log(x ==1 ? answer : -1);
+
+    // (3) recursion
+    // function recursionSol(x, count = 0){
+    //     return x == 1 ? (count >= 500 ? -1 : count) : recursionSol(x % 2 == 0 ? x / 2 : x * 3 + 1, count += 1);
+    // }
+    // var re = recursionSol(6);
+    // console.log(re);
+
+}
+
+// Q8. GCD & LCM
+function q8() {
+    //두 수를 입력받아 두 수의 최대공약수와 최소공배수륿 반환하는 함수
+    // answer[0] = GCD, answer[1] = LCM
+    var answer = []
+    var n = 3, m = 12;
+    
+
+    console.log(answer);
+}
 // 함수 로드
 function load(){
     //q1();
@@ -210,7 +288,15 @@ function load(){
     // console.log(b);
 
     // q4();
-    q5();
+
+    // var r1 = q5();
+    // console.log(r1);
+
+    // q6();
+
+    // q7();
+
+    q8();
 }
 
 // 초기화
