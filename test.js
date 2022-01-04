@@ -52,7 +52,7 @@ function reptMethod(){
     console.log(elements.join(''));
     console.log(elements.join('-'));
 }
-
+reptMethod();
 
 
 
