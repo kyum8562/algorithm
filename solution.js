@@ -267,12 +267,71 @@ function q7() {
 function q8() {
     //두 수를 입력받아 두 수의 최대공약수와 최소공배수륿 반환하는 함수
     // answer[0] = GCD, answer[1] = LCM
+    // 유클리드 호재법을 이용하자.
     var answer = []
-    var n = 3, m = 12;
+    var n = 7, m = 16;
+    var a = Math.max(n,m);
+    var b = Math.min(n,m);
+    // const gcd = (a, b) => {
+    //     if(b===0) {return a;}
+    //     return gcd(b, a % b);
+    // };
+    // gcd(48, 10) > gcd(10, 8) > gcd(8, 2) > gcd(2, 0) > 2
     
+    // (1) 간단하게 표현
+    const gcd = (a, b) => b === 0 ? a : gcd(b, a%b);
+    const lcm = a*b/gcd(a,b);
+    answer.push(gcd(a,b), lcm);
 
+    // (1-2) 함수화
+    // function gcd(a,b){
+    //     return b ? gcd(b, a%b) : a;
+    // }
+    // function lcm(a,b){
+    //     return a * b / gcd(a,b);
+    // }
+    // function gcdlcm(a,b){
+    //     return [gcd(a,b), lcm(a,b)];
+    // }
+    // gcdlcm(a,b);
     console.log(answer);
 }
+
+// Q9. 짝수(Even)와 홀수(Odd)
+function q9(){
+    var answer = '';
+    var num = 3;
+    num%2 ? answer = 'Even' : answer = 'Odd';
+    console.log(answer);
+}
+
+// Q10. 배열 중 제일 작은 수 제거하기(정렬 X)
+function q10(){
+    var arr = [3,4,1,2];
+    
+    // (1)
+    // arr.splice(arr.indexOf(Math.min(...arr)),1);
+    // if(arr.length<1)return[-1];
+    // return arr;
+    
+    // (2)
+    // function solution(arr) {
+    //     if (arr.length <= 1) return [-1];
+    //     let min;
+    //     arr.reduce((acc, cur) => min = cur > acc ? acc : cur);
+    //     return arr.filter(e => e !== min);
+    //   }
+      
+    //   console.log(solution([4,3,2,1]));
+    //   // Expected output: [4, 3, 2]
+    //   console.log(solution([10]));
+    //   // Expected output: [-1]
+    
+
+}
+
+// Q11. 
+
 // 함수 로드
 function load(){
     //q1();
@@ -296,7 +355,13 @@ function load(){
 
     // q7();
 
-    q8();
+    // q8();
+
+    // q9();
+
+    // q10();
+
+    q11();
 }
 
 // 초기화
