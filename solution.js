@@ -330,8 +330,123 @@ function q10(){
 
 }
 
-// Q11. 
+// Q11. 정수 제곱근 판별
+function q11(){
+    // 임의의 양의 정수 n에 대해, 양의 정수 x의 제곱인지 아닌지 판단
+    // n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고
+    // 아니라면 -1을 리턴하는 함수를 완성해라.
+    var n = 121;
+    var answer = 0;
+    var x = 1;
+    // (1) sqrt, pow 메서드 사용하기
 
+    // 정수인지 아닌지 판별하는 2가지 방법
+    // console.log(Number.isInteger(Math.sqrt(n)));
+    // console.log((Math.sqrt(n)%1 === 0));
+    while(x**2 < n){
+        x**2 === n ? true : x++;
+    }
+    console.log(`x : ${x}`);
+
+    (x**2  % 1 === 0) ? answer = Math.pow(Math.sqrt(n)+1, 2) : answer = -1;
+    // console.log((Math.sqrt(n)+1)**2);    
+
+
+    return answer;
+}
+
+// Q12. 정수 내림차순으로 배치하기
+function q12(){
+    // 정수 n을 입력받아 큰순부터 작은순으로 정렬 후 새로운 정수 리턴
+    var n = 118372;
+    var answer = String(n).split('');
+    var new_number ='';
+    var ab = n + '';
+    console.log(`ab : ${ab}`);
+    var tmp = 0;
+    var i = 0;
+    while(i < answer.length){
+        for(var j = 0 ; j < answer.length-1; j++){
+                if(answer[j] < answer[j+1]) {
+                    tmp = answer[j+1];
+                    answer[j+1] = answer[j]; 
+                    answer[j] = tmp;
+                }
+        }
+        i++;
+    // console.log(answer);
+    }
+    for(var k = 0 ; k < answer.length; k++){
+        new_number += answer[k];
+    }
+    new_number = parseInt(new_number);
+    console.log(new_number);
+}
+
+// Q13. 자연수 뒤집어 배열로 만들기
+function q13(){
+    var n = 12345;
+
+    // (1)
+    // var answer = String(n).split('');
+    // var i = 0;
+    // var tmp = 0;
+    // var k = answer.length-1;
+    // while(i < answer.length){
+    //     for(var j=0; j< k; j++){
+    //         tmp = answer[j+1];
+    //         answer[j+1] = answer[j];
+    //         answer[j] = tmp;
+
+            
+    //     }
+    //     i++;
+    //     k--;
+        
+    // }
+    
+    // for(var l =0; l< answer.length; l++){
+    //     answer[l] = parseInt(answer[l]);
+    // }
+
+    // console.log(`result answer : ${answer}`);
+
+    // (2) Gooooooooooooooood!
+    var arr = [];
+
+    do{
+        arr.push(n%10); 
+        n = Math.floor(n/10); 
+    } while(n>0);
+
+    console.log(arr);
+
+    // (3)
+    // console.log(n.toString().split('').reverse().map(o => o = parseInt(o)));
+    // console.log(String(n).split('').reverse().map(o => parseInt(o)));
+}
+
+// Q14. 자릿수 더하기
+function q14(){
+    var n = 123456789;
+    var sum = 0;
+    var nLength = (String(n).split('')).length ;
+    var arr = String(n).split('');
+    // for(var i = 0; i < nLength; i++){
+    //     arr[i] = parseInt(arr[i]);
+    //     sum += arr[i];
+    // }
+    // console.log(sum);
+
+    var sum1 = (acc, cur) => parseInt(acc) + parseInt(cur);
+    //const map1 = arr.map(x => parseInt(x));
+    console.log(map1);
+    var r = map1.reduce(sum1);
+    console.log(`map을 쓴 경우 : ${map1.reduce(sum1)}`);
+    
+
+    //map과 reduce 차이점 확실히 알기 !
+}
 // 함수 로드
 function load(){
     //q1();
@@ -361,7 +476,14 @@ function load(){
 
     // q10();
 
-    q11();
+    // var r2 = q11();
+    // console.log(r2);
+
+    // q12();
+
+    // q13();
+
+    q14();
 }
 
 // 초기화
