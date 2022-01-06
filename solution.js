@@ -1,5 +1,5 @@
 // Q1. 직사각형 별찍기
-function q1(){
+function q1() {
     // 표준 입력으로 두 개의 정수 a, b가 주어지고
     // 별(*) 문자를 이용해 가로의 길이가 a, 세로의 길이가 b인 직사각형 형태 출력
 
@@ -10,13 +10,13 @@ function q1(){
 
     var i = 0;
     var j = 0;
-    while(j < b){
-        while(i < a){
+    while (j < b) {
+        while (i < a) {
             result += `*`;
-            i = i +1;
+            i = i + 1;
         }
-    console.log(result);
-    j = j +1;
+        console.log(result);
+        j = j + 1;
     }
 
     // while 변형
@@ -28,7 +28,7 @@ function q1(){
     // while(b-- > 0){
     //     console.log(result);
     // }
-    
+
 
     // for 반복문을 이용
 
@@ -58,22 +58,22 @@ function q1(){
 }
 
 // 별찍어서 트리 만들기
-function tree(){
-    var resultSpace = [" "," "," ", " "," "," "," "," "," "," "];
+function tree() {
+    var resultSpace = [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "];
     var result = "";
     var a = 0;
     var b = 10;
 
-    for(var i=0; i< b; i++){
-    result += '*';
-    resultSpace.pop();
-    console.log(resultSpace.join('') +result);
-    result += '*';
+    for (var i = 0; i < b; i++) {
+        result += '*';
+        resultSpace.pop();
+        console.log(resultSpace.join('') + result);
+        result += '*';
     }
 }
 
 // Q2. x만큼 간격이 있는 n개의 숫자
-function q2(x, n){
+function q2(x, n) {
     // 정수 x와 자연수 n을 입력 받아, x부터 시작해 x씩 증가하는 숫자
     // n개 지니는 리스트를 리턴해야 한다.
     // var x = 2, n = 5;
@@ -93,17 +93,17 @@ function q2(x, n){
 }
 
 // Q2의 2 번째 문제풀이
-const nNumbers = (x, n) =>{
-    return Array.from({length: n},(v,index) => (index+1)*x);
-    };
+const nNumbers = (x, n) => {
+    return Array.from({ length: n }, (v, index) => (index + 1) * x);
+};
 
 // Q3. 행렬의 덧셈
 function q3() {
     // 2개의 행렬 arr1과 arr2를 입력받아(행과 열의 크기가 같아야 함)
     // 행렬 덧셈의 결과를 반환하는 함수 만들기
     var answer = [[]];
-    var arr1 = ([[5,2], [2,3]]);
-    var arr2 = [[3,4], [5,6]];
+    var arr1 = ([[5, 2], [2, 3]]);
+    var arr2 = [[3, 4], [5, 6]];
 
     // (1)
     // for(var i = 0 ; i < arr1.length; i++){
@@ -122,7 +122,7 @@ function q3() {
     //     }
     // }
 
-    answer = A.map((a,i) => a.map((b,j) => b + B[i][j]));
+    answer = A.map((a, i) => a.map((b, j) => b + B[i][j]));
 
     // 리턴
     return answer;
@@ -131,15 +131,15 @@ function q3() {
 // Q4. 전화번호 뒷 4자리를 제외한 나머지 숫자 전부 *로 마스킹
 function q4() {
     var phone_number = '01033921234';
-    
+
     // (1)
-    var front_number = phone_number.slice(0,-4);
+    var front_number = phone_number.slice(0, -4);
     var back_number = phone_number.slice(-4);
     var answer = "*".repeat(front_number.length) + back_number;
 
     // (2)
     var a1 = phone_number.replace(/\d(?=\d{4})/g, "*");
-    
+
     // output
     console.log(answer);
     console.log(a1);
@@ -202,21 +202,21 @@ function q6() {
     // 정수를 담고있는 배열 arr의 평균값 리턴하기
     var answer = 0;
     var arr = [1, 2, 3, 4];
-    
+
     // (1)
     // var sum = 0;
     // for(var i=0; i< arr.length; i++){
     //     sum += arr[i];
     // }
-    
+
     // answer = sum/arr.length;
     // console.log(answer);
-    
+
     // (2) reduce -1
-    console.log(`평균값 : ${arr.reduce((a,b) => a + b) / arr.length}`)
+    console.log(`평균값 : ${arr.reduce((a, b) => a + b) / arr.length}`)
 
     // (3) reduce -2
-    var result = arr.reduce(function(a,b){ return a + b})/arr.length;
+    var result = arr.reduce(function (a, b) { return a + b }) / arr.length;
     console.log(`평균값2 : ${result}`);
 }
 
@@ -270,18 +270,18 @@ function q8() {
     // 유클리드 호재법을 이용하자.
     var answer = []
     var n = 7, m = 16;
-    var a = Math.max(n,m);
-    var b = Math.min(n,m);
+    var a = Math.max(n, m);
+    var b = Math.min(n, m);
     // const gcd = (a, b) => {
     //     if(b===0) {return a;}
     //     return gcd(b, a % b);
     // };
     // gcd(48, 10) > gcd(10, 8) > gcd(8, 2) > gcd(2, 0) > 2
-    
+
     // (1) 간단하게 표현
-    const gcd = (a, b) => b === 0 ? a : gcd(b, a%b);
-    const lcm = a*b/gcd(a,b);
-    answer.push(gcd(a,b), lcm);
+    const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+    const lcm = a * b / gcd(a, b);
+    answer.push(gcd(a, b), lcm);
 
     // (1-2) 함수화
     // function gcd(a,b){
@@ -298,22 +298,22 @@ function q8() {
 }
 
 // Q9. 짝수(Even)와 홀수(Odd)
-function q9(){
+function q9() {
     var answer = '';
     var num = 3;
-    num%2 ? answer = 'Even' : answer = 'Odd';
+    num % 2 ? answer = 'Even' : answer = 'Odd';
     console.log(answer);
 }
 
 // Q10. 배열 중 제일 작은 수 제거하기(정렬 X)
-function q10(){
-    var arr = [3,4,1,2];
-    
+function q10() {
+    var arr = [3, 4, 1, 2];
+
     // (1)
     // arr.splice(arr.indexOf(Math.min(...arr)),1);
     // if(arr.length<1)return[-1];
     // return arr;
-    
+
     // (2)
     // function solution(arr) {
     //     if (arr.length <= 1) return [-1];
@@ -321,17 +321,17 @@ function q10(){
     //     arr.reduce((acc, cur) => min = cur > acc ? acc : cur);
     //     return arr.filter(e => e !== min);
     //   }
-      
+
     //   console.log(solution([4,3,2,1]));
     //   // Expected output: [4, 3, 2]
     //   console.log(solution([10]));
     //   // Expected output: [-1]
-    
+
 
 }
 
 // Q11. 정수 제곱근 판별
-function q11(){
+function q11() {
     // 임의의 양의 정수 n에 대해, 양의 정수 x의 제곱인지 아닌지 판단
     // n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고
     // 아니라면 -1을 리턴하는 함수를 완성해라.
@@ -343,12 +343,12 @@ function q11(){
     // 정수인지 아닌지 판별하는 2가지 방법
     // console.log(Number.isInteger(Math.sqrt(n)));
     // console.log((Math.sqrt(n)%1 === 0));
-    while(x**2 < n){
-        x**2 === n ? true : x++;
+    while (x ** 2 < n) {
+        x ** 2 === n ? true : x++;
     }
     console.log(`x : ${x}`);
 
-    (x**2  % 1 === 0) ? answer = Math.pow(Math.sqrt(n)+1, 2) : answer = -1;
+    (x ** 2 % 1 === 0) ? answer = Math.pow(Math.sqrt(n) + 1, 2) : answer = -1;
     // console.log((Math.sqrt(n)+1)**2);    
 
 
@@ -356,27 +356,27 @@ function q11(){
 }
 
 // Q12. 정수 내림차순으로 배치하기
-function q12(){
+function q12() {
     // 정수 n을 입력받아 큰순부터 작은순으로 정렬 후 새로운 정수 리턴
     var n = 118372;
     var answer = String(n).split('');
-    var new_number ='';
+    var new_number = '';
     var ab = n + '';
     console.log(`ab : ${ab}`);
     var tmp = 0;
     var i = 0;
-    while(i < answer.length){
-        for(var j = 0 ; j < answer.length-1; j++){
-                if(answer[j] < answer[j+1]) {
-                    tmp = answer[j+1];
-                    answer[j+1] = answer[j]; 
-                    answer[j] = tmp;
-                }
+    while (i < answer.length) {
+        for (var j = 0; j < answer.length - 1; j++) {
+            if (answer[j] < answer[j + 1]) {
+                tmp = answer[j + 1];
+                answer[j + 1] = answer[j];
+                answer[j] = tmp;
+            }
         }
         i++;
-    // console.log(answer);
+        // console.log(answer);
     }
-    for(var k = 0 ; k < answer.length; k++){
+    for (var k = 0; k < answer.length; k++) {
         new_number += answer[k];
     }
     new_number = parseInt(new_number);
@@ -384,7 +384,7 @@ function q12(){
 }
 
 // Q13. 자연수 뒤집어 배열로 만들기
-function q13(){
+function q13() {
     var n = 12345;
 
     // (1)
@@ -398,13 +398,13 @@ function q13(){
     //         answer[j+1] = answer[j];
     //         answer[j] = tmp;
 
-            
+
     //     }
     //     i++;
     //     k--;
-        
+
     // }
-    
+
     // for(var l =0; l< answer.length; l++){
     //     answer[l] = parseInt(answer[l]);
     // }
@@ -414,10 +414,10 @@ function q13(){
     // (2) Gooooooooooooooood!
     var arr = [];
 
-    do{
-        arr.push(n%10); 
-        n = Math.floor(n/10); 
-    } while(n>0);
+    do {
+        arr.push(n % 10);
+        n = Math.floor(n / 10);
+    } while (n > 0);
 
     console.log(arr);
 
@@ -427,10 +427,10 @@ function q13(){
 }
 
 // Q14. 자릿수 더하기
-function q14(){
+function q14() {
     var n = 123456789;
     var sum = 0;
-    var nLength = (String(n).split('')).length ;
+    var nLength = (String(n).split('')).length;
     var arr = String(n).split('');
     // for(var i = 0; i < nLength; i++){
     //     arr[i] = parseInt(arr[i]);
@@ -440,15 +440,84 @@ function q14(){
 
     var sum1 = (acc, cur) => parseInt(acc) + parseInt(cur);
     //const map1 = arr.map(x => parseInt(x));
-    console.log(map1);
-    var r = map1.reduce(sum1);
-    console.log(`map을 쓴 경우 : ${map1.reduce(sum1)}`);
-    
+    // console.log(map1);
+    var r = arr.reduce(sum1);
+    console.log(`map을 쓴 경우 : ${arr.reduce(sum1)}`);
+
 
     //map과 reduce 차이점 확실히 알기 !
 }
+
+// Q15. 이상한 문자 만들기
+function q15(){
+    var s = "try hello world";
+    var arr = String(s).split(" ");
+    var answer ='';
+    console.log(arr);
+    for ( var j = 0 ; j < arr.length; j ++){
+        for ( var a = 0; a < arr[j].length; a++){
+            if(a % 2 !== 0){
+                answer += arr[j][a].toLowerCase();
+            }
+            else{
+                answer += arr[j][a].toUpperCase();
+            }
+        }
+        if(j < arr.length -1){
+            answer += " ";
+        }
+    }
+    return answer;
+}
+
+// Q16. 약수의 합
+function q16(n){
+
+    // (1)
+    var answer = 0;
+    for( var i = 1 ; i < n+1; i ++){
+       if(!(n % i)){
+           answer += i;
+       } 
+    }
+    return answer;
+
+    // (2) 더 나은 시간복잡도
+    // var answer = 0;
+    // let i;
+    // for (i = 1; i <= Math.sqrt(n); i++){
+    //     if (!(n%i)) {
+    //         answer += (i+n/i);
+    //     }
+    // }
+    // i--;
+    // return (i === n/i) ? answer-i : answer;
+}
+
+// Q17. 문자열을 정수로 바꾸기
+function q17(s){
+    //(1)
+    return parseInt(s);
+    //(2)
+    return Number(s);
+    //(3)
+    return +s;
+    //(4)
+    return s/1;
+    //(5)
+    return Math.floor(s); 
+}
+
+// Q18. 소수 찾기
+function q18(){
+    var answer = 0;
+    var n = 10;
+    
+    console.log();
+}
+
 // 함수 로드
-function load(){
+function load() {
     //q1();
     // tree();
     // mapMethod()
@@ -483,12 +552,22 @@ function load(){
 
     // q13();
 
-    q14();
-}
+    // q14();
+
+    // q15();
+
+    // var r3 = q16(15);
+    // console.log(r3);
+
+    // var r4 = q17("12345");
+    // console.log(typeof(r4));
+
+    q18();
+}   
 
 // 초기화
-function init(){
+function init() {
     load();
-    }
+}
 
 init();
