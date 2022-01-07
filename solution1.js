@@ -512,26 +512,35 @@ function q17(s){
 function q18(){
     var answer = 0;
     var n = 10;
-    // var arr = [];
-    for (var i = 2; i<= n; i++){
-        for(var j = 2; j <= i ; j++){
+    var arr = [];
+    for (var i = 2 ; i < n+1 ; i ++){
+        arr[i] = i;
+    }
+    console.log(arr);
+    
             // if(arr[j]%2 ===0 && arr[j] !== 2){ arr[j] = 0 }
             // if(arr[j]%3 ===0 && arr[j] !== 3){ arr[j] = 0 }
             // if(arr[j]%5 ===0 && arr[j] !== 5){ arr[j] = 0 }
             // if(arr[j]%7 ===0 && arr[j] !== 7){ arr[j] = 0 }
-            if( i % j == 0){
-                if(i/j !== 1){
-                    break;
-                }
-                answer ++;
-            }
-        }
-    }
         // answer = arr.filter(n => n !== 0).length;
         // console.log(arr.filter(n => n !== 0));
     console.log(answer);
 }
-
+function numberOfPrime(n) {
+    var result = 0;
+    // 함수를 완성하세요.
+    var cnt=0;
+    for(var a=2;a<=n;a++){
+    cnt=0;
+      for(var b=1;b<=a;b++){
+            if(a%b==0)
+          cnt++;
+      }
+    if(cnt==2)
+      result++;
+    }
+    console.log(result);
+}
 // 함수 로드
 function load() {
     //q1();
@@ -578,7 +587,8 @@ function load() {
     // var r4 = q17("12345");
     // console.log(typeof(r4));
 
-    q18();
+    // q18();
+    numberOfPrime(1000);
 }   
 
 // 초기화
