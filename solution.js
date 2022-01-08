@@ -532,6 +532,8 @@ function q18(){
     console.log(answer);
 }
 
+// Q19 . 
+
 // 함수 로드
 function load() {
     //q1();
