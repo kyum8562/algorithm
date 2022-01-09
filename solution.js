@@ -449,21 +449,21 @@ function q14() {
 }
 
 // Q15. 이상한 문자 만들기
-function q15(){
+function q15() {
     var s = "try hello world";
     var arr = String(s).split(" ");
-    var answer ='';
+    var answer = '';
     console.log(arr);
-    for ( var j = 0 ; j < arr.length; j ++){
-        for ( var a = 0; a < arr[j].length; a++){
-            if(a % 2 !== 0){
+    for (var j = 0; j < arr.length; j++) {
+        for (var a = 0; a < arr[j].length; a++) {
+            if (a % 2 !== 0) {
                 answer += arr[j][a].toLowerCase();
             }
-            else{
+            else {
                 answer += arr[j][a].toUpperCase();
             }
         }
-        if(j < arr.length -1){
+        if (j < arr.length - 1) {
             answer += " ";
         }
     }
@@ -471,14 +471,14 @@ function q15(){
 }
 
 // Q16. 약수의 합
-function q16(n){
+function q16(n) {
 
     // (1)
     var answer = 0;
-    for( var i = 1 ; i < n+1; i ++){
-       if(!(n % i)){
-           answer += i;
-       } 
+    for (var i = 1; i < n + 1; i++) {
+        if (!(n % i)) {
+            answer += i;
+        }
     }
     return answer;
 
@@ -495,7 +495,7 @@ function q16(n){
 }
 
 // Q17. 문자열을 정수로 바꾸기
-function q17(s){
+function q17(s) {
     //(1)
     return parseInt(s);
     //(2)
@@ -503,36 +503,36 @@ function q17(s){
     //(3)
     return +s;
     //(4)
-    return s/1;
+    return s / 1;
     //(5)
-    return Math.floor(s); 
+    return Math.floor(s);
 }
 
 // Q18. 소수 찾기
-function q18(){
+function q18() {
     var answer = 0;
     var n = 10;
     // var arr = [];
-    for (var i = 2; i<= n; i++){
-        for(var j = 2; j <= i ; j++){
+    for (var i = 2; i <= n; i++) {
+        for (var j = 2; j <= i; j++) {
             // if(arr[j]%2 ===0 && arr[j] !== 2){ arr[j] = 0 }
             // if(arr[j]%3 ===0 && arr[j] !== 3){ arr[j] = 0 }
             // if(arr[j]%5 ===0 && arr[j] !== 5){ arr[j] = 0 }
             // if(arr[j]%7 ===0 && arr[j] !== 7){ arr[j] = 0 }
-            if( i % j == 0){
-                if(i/j !== 1){
+            if (i % j == 0) {
+                if (i / j !== 1) {
                     break;
                 }
-                answer ++;
+                answer++;
             }
         }
     }
-        // answer = arr.filter(n => n !== 0).length;
-        // console.log(arr.filter(n => n !== 0));
+    // answer = arr.filter(n => n !== 0).length;
+    // console.log(arr.filter(n => n !== 0));
     console.log(answer);
 }
 
-// Q19 . 
+
 
 // 함수 로드
 function load() {
@@ -581,7 +581,7 @@ function load() {
     // console.log(typeof(r4));
 
     q18();
-}   
+}
 
 // 초기화
 function init() {
