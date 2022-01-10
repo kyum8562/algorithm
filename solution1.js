@@ -162,7 +162,84 @@ function q28(s){
 }
 
 // Q29. 시저암호
+function q29(s, n){
+    // 주어진 s를 n 만큼 밀었을 때 나오는 결과값 리턴
+    // ex) "AB" , n=1 >> "BC"
+    var answer = '';
+    var small = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
+    var large = small.toUpperCase();
 
+    for (var i = 0 ; i < s.length ; i ++) {
+        if(small.includes(s[i])){
+            answer += small[small.indexOf(s[i])+n];
+        }
+        else if (large.includes(s[i])){
+            answer += large[large.indexOf(s[i])+n];
+        }
+        else{
+            answer += " ";
+        }
+    }
+
+    // for (var i = 0 ; i < s.length ; i ++) {
+    //     if(s[i] === " ") answer += " ";
+    //     else {answer += String.fromCharCode(s.charCodeAt(i)+n);}
+    // }
+    return answer;
+}
+
+// Q30. 2016년
+function q30(month, day){
+    // 2016년 1월 1일은 금요일이다. 2016년 a월 b일은 무슨요일 일까?
+    // 2016년은 윤년이다.
+
+    var objMonth = {1 : 31, 2 : 29, 3 : 31, 4: 30, 5 : 31, 6:30, 7:31,
+                8:31, 9:30, 10:31, 11:30, 12:31};
+    var arrDayOfTheWeek = ["THU", "FRI", "SAT", "SUN", "MON", "TUE", "WED"];
+    var allDay = day;
+
+    // 파라미터 유효성 검사
+    if(month > 13 && month < 1 && day > 31){
+        return -1;
+    }
+
+    // 파라미터 Month를 day로 변환
+    for(var i = 1 ; i < month ; i ++){
+        allDay += objMonth[i];
+    }
+
+    // 결과값 리턴
+    return arrDayOfTheWeek[allDay % 7];
+
+}
+
+// Q30_1 a년 b월 c일은 무슨 요일일까?
+function q30_1(year, month, day){
+    var year = year;
+    var objMonth = {1 : 31, 2 : 28, 3 : 31, 4: 30, 5 : 31, 6:30, 7:31,
+        8:31, 9:30, 10:31, 11:30, 12:31};
+    // 윤년일 경우 2월을 29일로 변경    
+    if(!(year % 4)) objMonth[2] = 29;
+
+    var arrDayOfTheWeek = ["THU", "FRI", "SAT", "SUN", "MON", "TUE", "WED"];
+    year%4 === 0 ? year = 365 +1 : year = 365;
+    var allDay = day + year;
+
+    // 파라미터 유효성 검사
+    if(month > 13 && month < 1 && day > 31){
+        return -1;
+    }
+
+    // 파라미터 Month를 day로 변환
+    for(var i = 1 ; i < month ; i ++){
+        allDay += objMonth[i];
+    }
+
+    return arrDayOfTheWeek[allDay % 7];
+
+}
+
+// Q31. 
 function load(){
     // var r = q21("Zbcdefg");
     // var r = q22("a234");
@@ -172,7 +249,10 @@ function load(){
     // var r = q26([5,9,7,10], 5);
     // var r = q27([4,4,4,4,4,4,4,4,3,3,4,4,4,4,4]);
     // var r = q28("ab");
-    var r = q29("AB");
+    // var r = q29("z", 4);
+    // var r = q30(5, 24);
+    // var r = q30_1(2022, 4, 28);
+    var r = q31();
 
     console.log(r);
 }
