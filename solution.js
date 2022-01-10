@@ -532,7 +532,54 @@ function q18() {
     console.log(answer);
 }
 
+// Q19. 수박수박수박수?
+function q19(){
+    // (1)
+    // var answer = '';
+    // const n = 5;
+    // var arr = [];
+    // for(var i = 0 ; i < n ; i ++){
+    //     (i % 2 === 0) ? arr[i] = "수" : arr[i] = "박"; 
+    // }
+    // answer = arr + "";
+    // for ( var i = 0; i < answer.length; i ++){
+    //     answer = answer.replace(',', '');
+    // }
+    // console.log(answer);
 
+    // (2)
+    var answer2 = n => {
+        return '수박'.repeat(n/2) + (n%2 === 1 ? '수' : '');
+    }
+    console.log(answer2(5));
+
+    // (3)
+    var answer3 = n => {
+        return '수박'.repeat(n).slice(0,n);
+    }
+    console.log(answer3(5));
+
+    // (4)
+    var answer4 = n => {
+        return '수박'.repeat(n).substring(0,n);
+    }
+    console.log(answer4(5));
+}
+
+// Q20. 서울에서 김서방 찾기
+function q20(){
+    // String형 배열 seoul의 element 중 "Kim"의 위치 x를 찾아,
+    // "김서방은 x에 있다"는 String을 반환하는 함수
+    // seoul은 길이 1이상, 1000 이하인 배열이다.
+    // seoul의 원소는 길이 ㅣ1이상, 20이하인 문자열이다.
+    // "Kim"은 반드시 seoul 안에 포함되어 있다.
+
+    var seoul = ["Jane","Kim"];
+    for(var i = 0 ; i < seoul.length; i++) {
+        if(seoul[i] === "Kim") return`김서방은 ${i}에 있다`;
+    }
+    // seoul.indexOf("Kim")과 동일
+}
 
 // 함수 로드
 function load() {
@@ -580,7 +627,11 @@ function load() {
     // var r4 = q17("12345");
     // console.log(typeof(r4));
 
-    q18();
+    // q18();
+
+    // q19();
+
+    // q20();
 }
 
 // 초기화
