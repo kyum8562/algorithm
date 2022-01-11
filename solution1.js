@@ -236,10 +236,9 @@ function q30_1(year, month, day){
     }
 
     return arrDayOfTheWeek[allDay % 7];
-
 }
 
-// Q31. 
+
 function load(){
     // var r = q21("Zbcdefg");
     // var r = q22("a234");
@@ -252,9 +251,9 @@ function load(){
     // var r = q29("z", 4);
     // var r = q30(5, 24);
     // var r = q30_1(2022, 4, 28);
-    var r = q31();
 
-    console.log(r);
+
+    // console.log(r);
 }
 
 function init(){
