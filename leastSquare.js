@@ -23,39 +23,21 @@ function solution(sizes){
     //w는 명함의 가로 길이를 나타냅니다.
     //h는 명함의 세로 길이를 나타냅니다.
     //w와 h는 1 이상 1,000 이하인 자연수입니다.
-    var idxH = 0, idxW = 0, tmp = 0;
-    var w = [];
-    var h = [];
     console.log(sizes);
-    for ( var i = 0 ; i < sizes.length ; i ++){
-        for ( var j = 0 ; j < sizes[i].length ; j ++){
-            j === 0 ? w.push(sizes[i][j]): h.push(sizes[i][j]);
-        }
-    }
-    for ( var i = 0 ; i < sizes.length ; i ++){
-        var wMax = w.reduce((a,b) => Math.max(a,b));
-        var hMax = h.reduce((a,b) => Math.max(a,b));
-        idxH = h.indexOf(hMax);
-        idxW = w.indexOf(wMax);
-        console.log(`wMax : ${wMax} ` +idxW);
-        console.log(`hMax : ${hMax} ` +idxH);
-        if(wMax > hMax){
-            // tmp = `${h[idxH]}`;
-            // h[idxH] = `${w[idxW]}`;
-            // w[idxW] = `${h[idxH]}`;
-            tmp = h[idxH];
-            w = w.map((a) => a[idxH] = h[idxH]);
-            h = h.map((a) => w[idxW]);
-            
-        }
-    }
-    console.log(`w : ${w}`);
-    console.log(`H : ${h}`);
-    
+    // 배열 내의 각 인덱스에 해당하는 배열 w, h를 스위칭(w < h 일 경우)
+    const rotated = sizes.map(([w,h]) => w < h ? [h,w] : [w,h]);
+    console.log(rotated);
 
-    // return answer;
+    // maxSize 배열을 생성(및 초기화) 하고 wm h의 최댓값만 저장
+    let maxSize = [0, 0];
+    rotated.forEach(([w,h]) => {
+        if( w > maxSize[0]) maxSize[0] = w;
+        if( h > maxSize[1]) maxSize[1] = h;
+        console.log (maxSize);
+    })
+    // 출력
+    return maxSize[0] * maxSize[1];    
 }
-
 function load(){
     var result = solution([[60, 50], [30, 70], [60, 30], [80, 40]]);
     console.log(result);
