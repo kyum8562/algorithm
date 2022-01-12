@@ -28,9 +28,7 @@ function solution(){
     }
     return a; 
 }
-050763
-5007
-// 5 0 0 7
+
 
 function load(){
     var result = solution();
