@@ -1,17 +1,57 @@
-function solution(a){
-    //a  = [ 1, 0, 2, 2, 0, 1, 2, 1, 0 ] 가 주어졌을 때
-    //a' = [ 0, 0, 0, 1, 1, 1, 2, 2, 2 ] 를 출력하면 된다.
+function buildPatternTable(word){
+    const patternTable = [0];
+    let prefixIdx = 0;
+    let suffixIdx = 1;
 
-    // sort 정렬을 사용한다면 O(n*logN)이 나오므로
-    // O(n) 
-    console.log(a);
-    idx = a[0];
-    idx++;
-    console.log(idx);
+    while(suffixIdx < word.length){
+        if(prefixIdx === 0){
+            patternTable[suffixIdx] = 0;
+            suffixIdx++;
+        }
+        else if(word[prefixIdx] === word[suffixIdx]){
+            patternTable[suffixIdx] = prefixIdx + 1;
+            suffixIdx ++;
+            prefixIdx ++;
+        }
+        else {
+            prefixIdx = patternTable[prefixIdx - 1];
+        }
+        
+    }
+    return patternTable;
 }
 
+function solution(text, word){
+
+    let textIdx = 0;
+    let wordIdx = 0;
+
+    const patternTable = buildPatternTable(word);
+    console.log(patternTable);
+
+    while (textIdx < text.length) {
+        if (text[textIdx] === word[wordIdx]) {
+            if (wordIdx === word.length - 1) {
+                return textIdx - word.length + 1;
+          }
+            wordIdx++;
+            textIdx++;
+        } 
+        else if (wordIdx > 0) {
+            wordIdx = patternTable[wordIdx - 1];
+        } 
+        else {
+            wordIdx = 0;
+            textIdx++;
+        }
+    }
+    
+      return -1;
+}
+
+
 function load(){
-    var result = solution([0, 5, 0, 7, 6, 3]);
+    var result = solution("asdfasdfasfasdfasdfasdfadsfaeeee", "aeeee");
     console.log(result);
 }
 function init(){
