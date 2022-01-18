@@ -26,6 +26,9 @@ console.log(`Q9. null === undefined : ${null === undefined}`);               // 
 console.log(`Q10. [2,3] == '2,3' : ${[2,3] == '2,3'}`);                      // 숫자와 문자 비교
 console.log(`Q11. true == '1' : ${true == '1'}`);                            // true(boolean)과 '1' 문자 비교
 
-
+console.log([1,2] < [3,4]);
+// valueOf를 하면 양쪽의 객체는 자기자신값인 객체가 나오게된다.
+// toString을 이용하면 '1,2'와 '3,4'가 나오게 되는데
+// 앞의 수 1과 3을 비교하고 2와 4를 비교해서 참이므로 true 반환
 
 
