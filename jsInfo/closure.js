@@ -42,25 +42,25 @@
 //   for문 클로저는 상위함수의 변수를 참조할 때 자신의 생성될 때가 아닌 내부변수의 최종값을 참조한다.
 //  */
 // /* [ 클로저 사용예제(1) - 서로 다른 클로저(innerFunc1,innerFunc2)가 같은 내부변수 참조] */
-// function outerFunc(){
-//   var a = 0;
-//   return { 
-//     innerFunc1 : function(){
-//       a += 1;
-//       console.log("a=" +a);
-//     },
-//     innerFunc2 : function(){
-//       a += 2;
-//       console.log("a=" +a);
-//     }
-//   };
-// }
-// var out = outerFunc();
-// out.innerFunc1();
-// out.innerFunc2();
-// out.innerFunc2();
-// out.innerFunc1();
-// // >> 실행결과 : a=1, a=3, a=5, a=6
+function outerFunc(){
+  var a = 0;
+  return { 
+    innerFunc1 : function(){
+      a += 1;
+      console.log("a=" +a);
+    },
+    innerFunc2 : function(){
+      a += 2;
+      console.log("a=" +a);
+    }
+  };
+}
+var out = outerFunc();
+out.innerFunc1();
+out.innerFunc2();
+out.innerFunc2();
+out.innerFunc1();
+// >> 실행결과 : a=1, a=3, a=5, a=6
 
 // // [ 클로저 사용예제(2) - 같은 함수 but 다른 객체(다른 내부변수 사용)]
 // function outerFunc(){
@@ -131,15 +131,15 @@
 // }
 // a();
 
-//ex3
-function f1(x) {return {n : function() {return x;}}}
-var a = f(0);
+// //ex3
+function f1(x) {return {fn : function() {return x;}}}
+var a = f1(0);
 a.fn();
 
 function f2(x) {return{};}
-var b = f(0);
-b.fn = function () {return x};
-b.fn();
+var a = f2(0);
+a.fn = function () {return x};
+a.fn();
 
 // //ex4
 // function fn(x) {
