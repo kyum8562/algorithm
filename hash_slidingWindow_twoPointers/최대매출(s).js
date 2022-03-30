@@ -10,10 +10,10 @@
 function solution(k, arr){
     let answer = sum = 0;
     for(let i = 0 ; i < k ; i ++) sum += arr[i];
-    
+    answer = sum;
     for(let i = k ; i < arr.length ; i ++){
-        if(answer < sum) answer = sum;
         sum += (arr[i] - arr[i-k]);
+        if(answer < sum) answer = sum;
     }
     
     return answer;
