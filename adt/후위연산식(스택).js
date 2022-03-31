@@ -21,8 +21,6 @@ function solution(str){
             else if(str[i] === '-') answer.push(tmp2-tmp1);
         }
     }
-
-
     return answer;
 }
 console.log(solution('352+*9-'));
