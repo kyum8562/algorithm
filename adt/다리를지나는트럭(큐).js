@@ -49,4 +49,47 @@ function solution(bridge_length, weight, truck_weights) {
 
     return sec;
 }
-console.log(solution(2, 10, [7, 4]));
+console.log(solution(2, 10, [7, 4, 5, 6]));
+
+
+/*
+2번째 풀이
+function solution(다리길이, 다리최대무게, 남은트럭){
+    let sec = 1;
+    let 현재무게 = 다리최대무게;
+    let 다리 = [];
+    for(let i = 0 ; i < 다리길이 ; i++){
+        다리.push(0);
+    }
+    // 남은 트럭이 없을 때 까지 반복
+    while(1 === 1){
+
+        현재무게 += 다리.pop();
+        다리.unshift(0);
+
+        // 현재 무게가 충분하다면
+        if(현재무게 >= 남은트럭[0]){
+            // 현재무게에서 들어올 트럭의 무게를 빼고
+            현재무게 -= 남은트럭[0];
+            // 다리를 팝해준뒤 현재무게를 채워준다
+            현재무게 += 다리.pop();
+            // 들어올 트럭을 다리의 앞부분에 넣어준다
+            다리.unshift(남은트럭.shift());
+        }
+
+        if(다리.reduce((x,y) => x+y) === 0){
+            break;
+        }
+
+        //초를 늘려준다
+        sec++;
+
+    }
+
+    return sec;
+}
+
+console.log(solution(2, 10, [7, 4, 5, 6]));
+
+
+*/
