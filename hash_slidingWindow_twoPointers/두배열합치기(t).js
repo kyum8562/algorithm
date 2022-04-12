@@ -21,7 +21,6 @@ function solution(arr1, arr2) {
             }
        }
        else{
-
            if(p1 < arr1.length){
             answer.push(arr1[p1++]);
            } 
@@ -34,4 +33,3 @@ function solution(arr1, arr2) {
 }
 
 console.log(solution([1, 3, 5], [2, 3, 6, 7, 9]));
-1, 2, 3, 3, 5

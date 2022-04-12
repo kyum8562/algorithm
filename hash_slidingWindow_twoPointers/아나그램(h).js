@@ -9,7 +9,6 @@ A(2), a(1), b(1), C(1), e(2)로 알파벳과 그 개수가 모두 일치한다.
 function solution(str1, str2){
     let answer = "YES";
     let hash1 = new Map();
-    let hash2 = new Map();
     for(let i = 0 ; i < str1.length ; i ++){
         if(!hash1.has(str1[i])) hash1.set(str1[i], 1);
         else hash1.set(str1[i], hash1.get(str1[i]) +1);
