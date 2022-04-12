@@ -22,7 +22,7 @@ function solution(goal, plan){
     let answer = "YES"
     let queue =goal.split('');
 
-    for(let x of plan){
+    for(let x of plan){ 
         if(queue.includes(x)){
             if(x!== queue.shift()) return "NO";
         }
@@ -32,4 +32,4 @@ function solution(goal, plan){
     return answer;
 }
 
-console.log(solution('CBA', 'CBDBGE'));
+console.log(solution('CBD', 'CABDGE'));
