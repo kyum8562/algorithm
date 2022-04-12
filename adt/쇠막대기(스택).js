@@ -12,8 +12,7 @@ function solution(str){
         if(str[i] === '(') stack.push(str[i]);
         else{
             // str[i]이 닫는괄호이고, str[i-1]이 여는괄호라면 -> 인접한 쌍이라면 팝해준다.
-            stack.pop();
-            if(str[i-1] === '(') answer += stack.length;
+            if(stack.pop() === '(') answer += stack.length;
             // 인접한 쌍이 아니라면 -> 쇠막대기의 끝이 위치해야 하는 곳
             else answer += 1;
         }
@@ -22,3 +21,4 @@ function solution(str){
     return answer;
 }
 console.log(solution('()(((()())(())()))(())'));
+
