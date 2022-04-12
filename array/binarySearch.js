@@ -2,7 +2,7 @@
 function solution(){
     // 오름차순 정렬이 되어있는 배열 a
     let answer = 0;
-    const a = [ 1, 3, 5, 6, 7 ,15, 20 ];
+    const a = [ 1, 3, 5, 6, 7, 15, 20 ];
     const goal = a[5];
     //일반적인 search를 할 경우 시간 복잡도는 O(n)
     //bianry search를 할 경우 -> O(logN)

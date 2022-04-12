@@ -29,11 +29,6 @@ function solution(){
     return -1;
 }
 
-const a = a.map(([a,b]) => a < b ? [b, a] : [a, b])
-a.forEach(element => {
-    
-});
-
 function load(){
     var result = solution();
     console.log(result);
