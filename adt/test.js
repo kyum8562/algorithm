@@ -1,36 +1,22 @@
-function solution(다리길이, 다리최대무게, 남은트럭){
-    let sec = 1;
-    let 현재무게 = 다리최대무게;
-    let 다리 = [];
-    for(let i = 0 ; i < 다리길이 ; i++){
-        다리.push(0);
-    }
-    // 남은 트럭이 없을 때 까지 반복
-    while(1 === 1){
+function solution(arr){
 
-        현재무게 += 다리.pop();
-        다리.unshift(0);
-
-        // 현재 무게가 충분하다면
-        if(현재무게 >= 남은트럭[0]){
-            // 현재무게에서 들어올 트럭의 무게를 빼고
-            현재무게 -= 남은트럭[0];
-            // 다리를 팝해준뒤 현재무게를 채워준다
-            현재무게 += 다리.pop();
-            // 들어올 트럭을 다리의 앞부분에 넣어준다
-            다리.unshift(남은트럭.shift());
+    for(let i = 0 ; i < arr.length-1; i ++){
+        let idx = i;
+        // 현재인덱스+1부터 배열마지막까지의 최솟값 인덱스 찾음
+        for(let j = i+1 ; j < arr.length; j++){
+            if(arr[j] < arr[idx]) idx = j;
         }
 
-        if(다리.reduce((x,y) => x+y) === 0){
-            break;
-        }
-
-        //초를 늘려준다
-        sec++;
-
+        // if(arr[i] > arr[idx]){
+        //     let tmp = arr[i];
+        //     arr[i] = arr[idx];
+        //     arr[idx] = tmp;
+        // }
+        [arr[i], arr[idx]] = [arr[idx], arr[i]];
     }
 
-    return sec;
+    return arr;
 }
 
-console.log(solution(2, 10, [7, 4, 5, 6]));
+
+console.log(solution([5, 11, 7, 23, 15]));

@@ -20,12 +20,4 @@ function solution(arr){
 
 }
 
-function load(){
-    var result = solution(['2', '1', '4', '7', '5', '3']);
-
-    console.log(result);
-}
-function init(){
-    load();
-}
-init();
+console.log(solution(['1', '2', '4', '7', '5', '3']));

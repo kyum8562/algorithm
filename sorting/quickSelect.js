@@ -1,5 +1,4 @@
 function solution(arr){   
-    var arr = arr;
     var pivot = arr.length-2;
     var p1 = 0;
     var p2 = arr.length-1;
@@ -27,11 +26,4 @@ function solution(arr){
     return p1;
 }   
 
-function load(){
-    var result = solution(['3', '5', '9', '1', '2', '4', '7']);
-    console.log(result);
-}
-function init(){
-    load();
-}
-init();
+console.log(solution(['3', '5', '9', '1', '2', '4', '7']));

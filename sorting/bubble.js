@@ -6,12 +6,10 @@ function solution(arr){
     // 시간 복잡도 : O(N*N), 정렬 중에서는 느린 편이다.
     var arr = arr;
     var tmp = 0 ;
-    for(var i = 0 ; i < arr.length ; i ++){
-        for(var j = 0 ; j < arr.length-1 ; j ++){
+    for(var i = 0 ; i < arr.length-1 ; i ++){
+        for(var j = 0 ; j < arr.length-i-1 ; j ++){
             if( arr[j] > arr[j+1] ){
-                tmp = arr[j+1];
-                arr[j+1] = arr[j];
-                arr[j] = tmp;
+                [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
             }
         }
     }

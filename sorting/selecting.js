@@ -3,8 +3,6 @@ function solution(arr){
     // 배열의 0번째 인덱스부터 순회를 하면서 인덱스 값들 중 최솟값과 swap을 하는 정렬 방식.
     // 시간 복잡도 : O(N*N)
     // Unstable한 정렬이다.
-    var arr = arr;
-    var idx = 0;
     var idx2 = 0;
     for(var i = 0 ; i < arr.length ; i ++){
         
@@ -35,12 +33,4 @@ function solution(arr){
 
     
 }
-
-function load(){
-    var result = solution(['3', '5', '9', '1', '7']);
-    console.log(result);
-}
-function init(){
-    load();
-}
-init();
+console.log(solution(['3', '5', '9', '1', '7']));
