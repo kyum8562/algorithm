@@ -30,7 +30,7 @@ console.log(solution(5, [1, 2, 3, 2, 6, 2, 3, 5, 7]));
 
 
 /*
-push/shift/unshift를 사용하지 못한다면
+내장함수[push/shift/unshift]를 사용하지 못한다면
 => 
 stack.forEach((x) => {
     var idx = arr.indexOf(x);
@@ -41,14 +41,13 @@ stack.forEach((x) => {
         for(let i = n ; i >= 1 ; i --){
             arr[i] = arr[i-1];
         }
-        arr[0] = x;
     }
     else{
         // cache hit일 때
         for(let j = idx ; j >= 1 ; j --){
                 arr[j] = arr[j-1];
         }
-        arr[0] = x;
     }
+    arr[0] = x;
 });
 */
