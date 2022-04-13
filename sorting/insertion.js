@@ -5,22 +5,27 @@ function solution(arr) {
     // 느리고 직관적인 정렬 방식이라고 불린다.
     // stable한 정렬방식이다.
 
-
-    // 오름차순 정렬
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i ++) {
         // 현재 인덱스에 해당하는 arr 값을 tmp에 넣음
-        let tmp = arr[i];
+        let tmp = arr[i], j;
+        
         // 직전 인덱스
-        let idx = i - 1;
+        // let idx = i - 1;
+        // //직전값이 크다면
+        // while (idx >= 0 && arr[idx] > tmp) {
+        //     // 현재값에 직전값을 넣어줌
+        //     arr[idx + 1] = arr[idx];
+        //     // 직전값 인덱스 하나 감소 후 다시 비교
+        //     idx -= 1;
+        // }
+        // arr[idx + 1] = tmp;
 
-        //직전값이 크다면
-        while (idx >= 0 && arr[idx] > tmp) {
-            // 현재값에 직전값을 넣어줌
-            arr[idx + 1] = arr[idx];
-            // 직전값 인덱스 하나 감소 후 다시 비교
-            idx -= 1;
+        for(j = i-1 ; j >= 0 ; j --){
+            if(arr[j] > tmp) arr[j+1] = arr[j]; 
+            else break;
         }
-        arr[idx + 1] = tmp;
+        arr[j+1] = tmp;
+        console.log(arr);
     }
     return arr;
 }
