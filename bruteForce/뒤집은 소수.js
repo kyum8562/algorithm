@@ -17,17 +17,21 @@ function solution(arr){
         let tmp = 0;
 
         // case 1
-        while(x){
-            let t = x%10; 
-            tmp = tmp*10+t;
-            x = parseInt(x/10);
-        }
+        // while(x){
+        //     let t = x%10; 
+        //     tmp = tmp*10+t;
+        //     x = parseInt(x/10);
+        // }
 
         // case 2
         // x = x.toString().split('');
         // for(let i = x.length-1 ; i >=0 ; i--){
         //     tmp += x[i];
         // }
+
+        // case 3
+        tmp = x.toString().split('').reverse().join('');
+        // console.log(tmp);
 
         if(isPrime(+tmp)) answer.push(+tmp);
     }
