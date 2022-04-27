@@ -1,3 +1,5 @@
+// 시간복잡도 O(N)
+
 function solution(arr){
     let arrLen = arr.length/2;
     // (1) using hash-Map
