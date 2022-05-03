@@ -8,7 +8,7 @@ return 하도록 solution 함수를 완성해주세요.
 function solution(absolutes, signs){
     let answer = 0;
     for(let i = 0 ; i < signs.length ; i++) if(signs[i] === false) absolutes[i] = -absolutes[i];
-    absolutes.filter((v, i) => answer +=absolutes[i]);
+    absolutes.forEach((v, i) => answer +=absolutes[i]);
     
     return answer;
 
