@@ -6,13 +6,17 @@
 return 하도록 solution 함수를 완성해주세요.
 */
 function solution(absolutes, signs){
-    // let answer = 0;
-    // for(let i = 0 ; i < signs.length ; i++) if(signs[i] === false) absolutes[i] = -absolutes[i];
-    // absolutes.filter((x, i) => answer +=absolutes[i]);
+    let answer = 0;
+    for(let i = 0 ; i < signs.length ; i++) if(signs[i] === false) absolutes[i] = -absolutes[i];
+    absolutes.filter((v, i) => answer +=absolutes[i]);
     
-    // return answer;
-    
+    return answer;
+
+    // 2
     return absolutes.reduce((acc, val, idx) => acc + val*(signs[idx] ? 1 : -1), 0)
+
+    // 3
+    return absolutes.forEach((v, i) => {signs[i] ? answer += v : answer -= v });
 }
 
 
