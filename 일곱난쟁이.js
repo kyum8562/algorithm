@@ -8,18 +8,19 @@ function solution(arr){
   let target = arr.reduce((acc, i) => {return acc+i}, 0) - 100;
   let a = 0;
   let b = 0;
-  for(let i = 0 ; i < arr.length; i++){
+  for(let i = 0 ; i < arr.length -1; i++){
     for(let j = i+1 ; j < arr.length; j++){
-      if(arr[i] + arr[j] == 40){
-        a = i;
-        b = j;
+      if(arr[i] + arr[j] == target){
+        // a = i;
+        // b = j;
+        arr.splice(i, 1);
+        arr.splice(j, 1);
       }
     }
   }
-
-  answer = arr.filter((v, i) => {if(!(i == a || i == b)) return v})
-  return answer;
-}
+  // answer = arr.filter((v, i) => {if(!(i == a || i == b)) return v})
+  return arr;
+} 
 
 
 console.log(solution([20, 7, 23, 19, 10, 15, 25, 8, 13]));
