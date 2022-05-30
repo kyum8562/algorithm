@@ -1,8 +1,8 @@
 function solution(arr){
-
+    let answer = 0;
    
-    return arr;
+    return answer;
 }
 
 
-console.log(solution([5, 11, 7, 23, 15]));
+console.log(solution());
