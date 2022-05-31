@@ -1,4 +1,4 @@
-function solution(str){
+function solution(str) {
   let answer = '';
   // (1)
   // for(let x of str){
