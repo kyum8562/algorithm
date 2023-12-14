@@ -24,7 +24,7 @@ public class Main {
         list = new ArrayList[N + 1];
         for (int i = 1; i <= N; i++) list[i] = new ArrayList<>();
 
-        int[] tmp = new int[N + 1];
+        boolean[] leafNodes = new boolean[N + 1];
         for (int i = 0; i < N - 1; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
@@ -33,10 +33,11 @@ public class Main {
 
             list[a].add(new Node(b, c));
             list[b].add(new Node(a, c));
-
+            leafNodes[a] = true;
         }
 
         for (int i = 1; i <= N; i++) {
+            if(leafNodes[i]) continue;
             v = new boolean[N + 1];
             v[i] = true;
             dfs(i, 0);
