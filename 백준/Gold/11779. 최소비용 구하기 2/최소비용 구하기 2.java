@@ -5,7 +5,7 @@ public class Main {
     static int R, C;
     static long[] dist;
     static int[] route;
-    static List<Node>[] graph, graph2;
+    static List<Node>[] graph;
     static int[] dr = {-1, 0, 1, 0};
     static int[] dc = {0, 1, 0, -1};
     public static void main(String[] args) throws IOException {
@@ -14,12 +14,10 @@ public class Main {
         R = Integer.parseInt(br.readLine());
         C = Integer.parseInt(br.readLine());
         graph = new ArrayList[R+1];
-        graph2 = new ArrayList[R+1];
         dist = new long[R+1];
         route = new int[R+1];
         for(int i = 1 ; i <= R ; i ++){
             graph[i] = new ArrayList<>();
-            graph2[i] = new ArrayList<>();
             dist[i] = Integer.MAX_VALUE;
         }
 
@@ -30,19 +28,19 @@ public class Main {
             int d = Integer.parseInt(st.nextToken());
 
             graph[a].add(new Node(b, d));
-            graph2[b].add(new Node(a, d));
         }
         st = new StringTokenizer(br.readLine());
         int s = Integer.parseInt(st.nextToken());
         int e = Integer.parseInt(st.nextToken());
+
         dijkstra(s);
+
         int cur = e;
         List<Integer> res = new ArrayList<>();
-        while(route[cur] != 0){
+        while(cur != 0){
             res.add(cur);
             cur = route[cur];
         }
-        res.add(s);
 
         System.out.println(dist[e]);
         System.out.println(res.size());
