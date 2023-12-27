@@ -2,12 +2,14 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+    static int N;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         StringTokenizer st;
 
-        int N = Integer.parseInt(br.readLine());
+        N = Integer.parseInt(br.readLine());
         int[] arrR = new int[N];
         int[] arrC = new int[N];
 
@@ -30,16 +32,16 @@ public class Main {
                 }
                 // 정렬
                 Arrays.sort(localDist); // 50log50
+                long sum = 0;
                 for (int k = 0; k < N; k++) {
-                    long sum = 0;
-                    for (int l = 0; l <= k; l++)
-                        sum += localDist[l];
+                    sum += localDist[k];
                     ans[k] = Math.min(ans[k], sum);
                 }
             }
         }
-        for (int i = 0; i < N; i++)
+        for (int i = 0; i < N; i++) {
             sb.append(ans[i]).append(" ");
+        }
         System.out.println(sb);
     }
 }
