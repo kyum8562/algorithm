@@ -17,7 +17,7 @@ public class Main {
             prefixSum[i] = prefixSum[i-1] + map[i];
         }
         long sum = 0;
-        for (int i = 1; i <= N ; i++) {
+        for (int i = 1; i < N ; i++) {
             sum += (prefixSum[N] - prefixSum[i])*map[i];
         }
         System.out.println(sum);
