@@ -16,22 +16,37 @@ public class Main {
         v = new boolean[100001];
 
         bfs();
+//        dfs(new Node(N, 0));
         System.out.println(min);
     }
 
+//    private static void dfs(Node currNode) {
+//        int cur = currNode.node;
+//        int dist = currNode.dist;
+//
+//        if (!isValid(cur)) return;
+//        if (cur == K) min = Math.min(min, dist);
+//
+//        dfs(new Node(cur*2, dist));
+//        dfs(new Node(cur+1, dist+1));
+//        dfs(new Node(cur-1, dist+1));
+//    }
+
     private static void bfs() {
-        Queue<Node> q = new ArrayDeque<>();
-        q.offer(new Node(N, 0, v));
+        PriorityQueue<Node> q = new PriorityQueue<>((o1, o2) -> o1.dist - o2.dist);
+        q.offer(new Node(N, 0));
 
         while (!q.isEmpty()) {
             Node currNode = q.poll();
             int curr = currNode.node;
             int dist = currNode.dist;
-            boolean[] currV = currNode.v;
 
-            currV[curr] = true;
+            v[curr] = true;
 
-            if (curr == K) min = Math.min(min, dist);
+            if (curr == K){
+                min = Math.min(min, dist);
+                return;
+            }
 
             for (int d = 0; d < 3; d++) {
                 int next = curr;
@@ -42,8 +57,8 @@ public class Main {
 
                 if (!isValid(next)) continue;
 
-                if (!currV[next]) {
-                    q.offer(new Node(next, d==0 ? dist: dist+1, currV));
+                if (!v[next]) {
+                    q.offer(new Node(next, d==0 ? dist: dist+1));
                 }
             }
         }
@@ -51,11 +66,9 @@ public class Main {
     static class Node{
         int node;
         int dist;
-        boolean[] v;
-        public Node(int node, int dist, boolean[] v){
+        public Node(int node, int dist){
             this.node = node;
             this.dist = dist;
-            this.v = v;
         }
     }
 
