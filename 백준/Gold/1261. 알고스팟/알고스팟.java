@@ -4,17 +4,20 @@ import java.util.*;
 public class Main {
     static int N, M;
     static final int INF = Integer.MAX_VALUE;
-    static int[][] v, map;
+    static int[][] map;
+    static boolean[][] v;
     static int[] dr = {-1, 0, 1, 0};
     static int[] dc = {0, 1, 0, -1};
 
     static class Node {
         int r;
         int c;
+        int d;
 
-        public Node(int r, int c) {
+        public Node(int r, int c, int d) {
             this.r = r;
             this.c = c;
+            this.d = d;
         }
     }
 
@@ -25,7 +28,7 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
         N = Integer.parseInt(st.nextToken());
 
-        v = new int[N][M];
+        v = new boolean[N][M];
         map = new int[N][M];
 
         for (int i = 0; i < N; i++) {
@@ -35,33 +38,33 @@ public class Main {
             }
         }
 
-        for (int i = 0; i < N; i++) Arrays.fill(v[i], INF);
+//        for (int i = 0; i < N; i++) Arrays.fill(v[i], INF);
 
         dijkstra();
-
-        System.out.println(v[N - 1][M - 1]);
     }
 
     private static void dijkstra() {
-        Queue<Node> q = new ArrayDeque<>();
-        v[0][0] = 0;
-        q.offer(new Node(0, 0));
+        PriorityQueue<Node> q = new PriorityQueue<>((o1, o2) -> o1.d - o2.d);
+        v[0][0] = true;
+        q.offer(new Node(0, 0, 0));
 
         while (!q.isEmpty()) {
             Node curr = q.poll();
             int r = curr.r;
             int c = curr.c;
 
+            if(r == N-1 && c == M-1){
+                System.out.println(curr.d);
+                return;
+            }
+
             for (int d = 0; d < 4; d++) {
                 int nr = dr[d] + r;
                 int nc = dc[d] + c;
 
-                if (isValid(nr, nc)) {
-                    if (v[nr][nc] > v[r][c] + map[nr][nc]) {
-                        v[nr][nc] = v[r][c] + map[nr][nc];
-                        q.offer(new Node(nr, nc));
-                    }
-                }
+                if (!isValid(nr, nc) || v[nr][nc]) continue;
+                v[nr][nc] = true;
+                q.offer(new Node(nr, nc, map[nr][nc] == 0 ? curr.d : curr.d + 1));
             }
         }
     }
