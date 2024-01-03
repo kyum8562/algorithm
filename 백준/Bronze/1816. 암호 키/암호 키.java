@@ -3,27 +3,12 @@ import java.util.*;
 
 public class Main {
     static final int MAX = 1000001;
-    static int[] minFactor = new int[MAX];
-    static ArrayList<Integer> prime = new ArrayList<>();
+    static boolean[] isPrime;
 
     static void eratosthenes() {
-        for (int i = 2; i < MAX; i++) {
-            minFactor[i] = i;
-        }
-
-        for (int i = 2; i * i < MAX; i++) {
-            if (minFactor[i] == i) {
-                for (int j = i * i; j < MAX; j += i) {
-                    if (minFactor[j] == j) {
-                        minFactor[j] = i;
-                    }
-                }
-            }
-        }
-
-        for (int i = 2; i < MAX; i++) {
-            if (minFactor[i] == i) {
-                prime.add(i);
+        for (int i = 2 ; i * i < MAX; i++) {
+            for (int j = i * i; j < MAX; j += i) {
+                isPrime[j] = true;
             }
         }
     }
@@ -31,6 +16,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         int N = Integer.parseInt(br.readLine());
+        isPrime = new boolean[MAX];
 
         eratosthenes();
 
@@ -39,8 +25,9 @@ public class Main {
 
             boolean flag = true;
 
-            for (int i = 0; i < prime.size(); i++) {
-                if (S % prime.get(i) == 0) {
+            for (int i = 2; i < MAX; i++) {
+                if(isPrime[i]) continue;
+                if (S % i == 0) {
                     flag = false;
                     break;
                 }
