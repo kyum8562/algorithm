@@ -19,16 +19,10 @@ public class Main {
 			
 			for(int j = A ; j < A+10 && j<100; j++) {
 				for(int k = B ; k < B+10 && k<100; k++) {
+                    if(rc[j][k] == 1) continue;
 					rc[j][k] = 1;
+                    ans ++;
 				}
-			}
-		}
-		
-		
-		for(int i = 0 ; i < 100 ; i ++) {
-			for(int j = 0 ; j < 100 ; j ++) {
-				if(rc[i][j] == 1)
-					ans++;
 			}
 		}
 		System.out.println(ans);
