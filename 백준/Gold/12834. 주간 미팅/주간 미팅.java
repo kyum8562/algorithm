@@ -76,6 +76,8 @@ public class Main {
         while (!pq.isEmpty()) {
             Node currNode = pq.poll();
             int curr = currNode.from;
+            
+            if(currNode.dist > dist[curr]) continue;
 
             for (Node next : list[curr]) {
                 if (dist[next.from] > dist[curr] + next.dist) {
