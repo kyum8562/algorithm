@@ -5,17 +5,18 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int A = Integer.parseInt(st.nextToken());
+        long N = Long.parseLong(st.nextToken());
+        long A = Long.parseLong(st.nextToken());
 
         System.out.println(getAns(N, A));
     }
 
-    private static int getAns(long N, int A) {
+    private static int getAns(long N, long A) {
         int sum = 0;
-        while(N > 1){
-            sum += N/A;
-            N /= A;
+        long AA = A;
+        while(N >= AA){
+            sum += N/AA;
+            AA *= A;
         }
         return sum;
     }
