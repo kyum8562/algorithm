@@ -17,14 +17,15 @@ public class Main {
 
         // 소수, 팰린드롬 체크
         for (int i = a; i <= b ; i++) {
-            if(!isPrime[i] && palindrome(i+""))
+            if(!isPrime[i] && palindrome(i))
                 sb.append(i).append("\n");
         }
         sb.append("-1");
         System.out.println(sb);
     }
 
-    private static boolean palindrome(String s) {
+    private static boolean palindrome(int n) {
+        String s = String.valueOf(n);
         int left = 0;
         int right = s.length() -1;
         while(left < right){
