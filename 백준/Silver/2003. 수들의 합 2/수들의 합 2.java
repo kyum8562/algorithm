@@ -28,20 +28,16 @@ public class Main {
         while(N > e){
             // 타겟보다 클 경우,
             if(sum > T){
-                sum -= map[s];
-                s++;
+                sum -= map[s++];
             }
             // 타겟보다 작을 경우,
             else if(sum < T){
-                e ++;
-                sum += map[e];
+                sum += map[++e];
             }
             // 타겟과 같을 경우
             else{
-                sum -= map[s];
-                s++;
-                e++;
-                sum += map[e];
+                sum -= map[s++];
+                sum += map[++e];
                 cnt ++;
             }
         }
