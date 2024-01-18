@@ -17,9 +17,8 @@ public class Main {
         Arrays.sort(map);
 
         int min = Integer.MAX_VALUE;
-        for(int i = 0 ; i < N ; i++){
-            for(int j = 0 ; j < N ; j ++){
-                if(i == j) continue;
+        for(int i = 0 ; i < N-3 ; i++){
+            for(int j = i+3 ; j < N ; j ++){
                 min = Math.min(min, twoPoint(i, j));
             }
         }
@@ -27,20 +26,11 @@ public class Main {
     }
 
     private static int twoPoint(int a, int b) {
-        int s = 0, e = N-1;
+        int s = a+1, e = b-1;
 
         int T = map[a] + map[b];
         int min = Integer.MAX_VALUE;
         while(e > s){
-            if(s == a || s == b){
-                s++;
-                continue;
-            }
-            if(e == a || e == b){
-                e--;
-                continue;
-            }
-
             int sum = map[s] + map[e];
             min = Math.min(min, Math.abs(sum-T));
 
