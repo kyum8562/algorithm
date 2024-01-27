@@ -31,7 +31,7 @@ public class Main {
         }
 
         // 브루트포스 최댓값 구하기
-        long ans = Integer.MIN_VALUE;
+        int ans = Integer.MIN_VALUE;
         for(int i = 1 ; i <= N; i ++){
             for (int j = 1; j <= M; j ++) {
                 for (int k = i; k <= N; k++) {
