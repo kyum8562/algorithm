@@ -1,42 +1,31 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+//        StringBuilder sb = new StringBuilder();
 
-	static int N, K;
-	static int[] arr;
-	public static void main(String[] args) throws IOException {
-		// 입력부
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		N = Integer.parseInt(st.nextToken());
-		K = Integer.parseInt(st.nextToken());
-		
-		arr = new int[N+1];
-		
-		st = new StringTokenizer(br.readLine());
-		int sum = 0;
-		// 배열에 누적합으로 넣어줌
-		for(int i = 1 ; i <= N ; i ++) {
-			sum += Integer.parseInt(st.nextToken());
-			arr[i] = sum;
-		}
-		
-		// 구현부
-		int maxSum = Integer.MIN_VALUE; // 최댓값을 저장한 변수
-		for(int i = 1 ; i <= N ; i ++) {
-			int a = i-K <= 0 ? 0 : i-K;
-			if(i-a != K) continue;
-			int tmp = arr[i] - arr[a];
-			if(maxSum < tmp)
-				maxSum = tmp;
-		}
-		
-		System.out.println(maxSum);
-	}
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        int[] prefixSum = new int[N+1];
 
+        st = new StringTokenizer(br.readLine());
+        for(int i = 1 ; i <= N ; i ++){
+            int tmp = Integer.parseInt(st.nextToken());
+            prefixSum[i] = prefixSum[i-1] + tmp;
+        }
+
+        int idx = N;
+        int max = Integer.MIN_VALUE;
+        while(true){
+            int tmp = idx - K;
+            if(tmp < 0) break;
+            max = Math.max(max, prefixSum[idx] - prefixSum[tmp]);
+            idx --;
+        }
+
+        System.out.println(max);
+    }
 }
