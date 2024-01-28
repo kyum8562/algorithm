@@ -1,40 +1,39 @@
 import java.io.*;
 import java.util.*;
-
 public class Main {
-    static int N, M;
-//    static final int INF = Integer.MIN_VALUE;
-    static int[][] prefixSum;
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         StringBuilder sb = new StringBuilder();
 
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        prefixSum = new int[N+1][N+1];
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
 
-        // 누적합 구하기
-        for(int i = 1 ; i <= N; i ++){
+        int[][] map = new int[N+1][N+1];
+
+        // 가로기준 누적합
+        for(int i = 1 ; i <= N ; i ++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 1; j <= N; j ++) {
+            for(int j = 1 ; j <= N ; j ++) {
                 int tmp = Integer.parseInt(st.nextToken());
-                prefixSum[i][j] = prefixSum[i][j-1] + tmp;
+                map[i][j] = map[i][j-1] + tmp;
             }
         }
+        // 가로기준 누적합을 바탕으로 한 세로 누적합
+        for(int i = 1 ; i <= N ; i ++) {
+            for(int j = 1 ; j <= N ; j ++)
+                map[i][j] += map[i-1][j];
+        }
 
-        while(M -- > 0){
+        for(int i = 0 ; i < M ; i ++) {
             st = new StringTokenizer(br.readLine());
             int x1 = Integer.parseInt(st.nextToken());
             int y1 = Integer.parseInt(st.nextToken());
             int x2 = Integer.parseInt(st.nextToken());
             int y2 = Integer.parseInt(st.nextToken());
 
-            long sum = 0;
-            for(int i = x1 ; i <= x2 ; i ++){
-                sum += prefixSum[i][y2] - prefixSum[i][y1-1];
-            }
-            sb.append(sum).append("\n");
+            int ans = map[x2][y2] - map[x2][y1-1] - map[x1-1][y2] + map[x1-1][y1-1];
+            sb.append(ans).append("\n");
         }
         System.out.println(sb);
     }
