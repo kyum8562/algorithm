@@ -1,36 +1,26 @@
 import java.io.*;
 import java.util.*;
-
 public class Main {
-    static int N, K;
-    static int data[];
-    static Map<Integer, Long> map = new HashMap<>();
-    static StringTokenizer st;
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+        StringTokenizer st;
 
         st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        K = Integer.parseInt(st.nextToken());
-        data = new int[N + 1];
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        int[] arr = new int[N + 1];
+        Map<Integer, Integer> map = new LinkedHashMap<>();
 
-        long answer = 0;
+        long ans = 0;
         st = new StringTokenizer(br.readLine());
         for (int i = 1; i <= N; i++) {
-            data[i] = Integer.parseInt(st.nextToken()) + data[i - 1];
-            if (data[i] == K) {
-                answer++;
-            }
-            if (map.containsKey(data[i] - K))
-                answer += map.get(data[i] - K);
-            if (!map.containsKey(data[i]))
-                map.put(data[i], 1L);
-            else
-                map.put(data[i], map.get(data[i]) + 1);
+            arr[i] = Integer.parseInt(st.nextToken()) + arr[i - 1];
+            if (arr[i] == K) ans++;
+
+            ans += map.getOrDefault(arr[i] - K, 0);
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
         }
 
-        System.out.println(answer);
+        System.out.println(ans);
     }
 }
