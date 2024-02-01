@@ -18,7 +18,6 @@ public class Main {
 
         Arrays.sort(arr); // 오름차순 정렬
 
-        Map<Integer, Integer> map = new LinkedHashMap<>();
         int M = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine());
         for(int i = 0 ; i < M ; i ++){
