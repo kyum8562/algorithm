@@ -22,8 +22,6 @@ public class Main {
             max = Math.max(max, arr[i]); // max 값 저장
         }
 
-        Arrays.sort(arr); // 오름차순 정렬
-
         System.out.println(binarySearch(max));
     }
 
