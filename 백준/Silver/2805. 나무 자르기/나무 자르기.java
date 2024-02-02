@@ -1,42 +1,53 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
+    static StringBuilder sb = new StringBuilder();
+    static int N, M;
+    static int[] arr;
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(in.readLine(), " ");
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
-		int trees[] = new int[N];
-	
-		// 나무길이 입력받기 + right 값은 나무 최대 길이 찾아 저장
-		int left = 0, right = Integer.MIN_VALUE;
-		st = new StringTokenizer(in.readLine(), " ");
-		for(int i = 0; i < N; i++) {
-			int num = Integer.parseInt(st.nextToken());
-			trees[i] = num;
-			right = Math.max(right, num);
-		}
-	
-		while(left <= right) {
-			int mid = (left + right) / 2;
-			long sum = 0;
-			
-			// 잘라진 나무 길이의 합
-			for(int i = 0; i < N; i++) {
-				// 이 조건을 넣지 않으면 음수값이 더해지기 때문에 제대로 된 계산이 되지 않음
-				if(trees[i] > mid) sum += trees[i] - mid; 
-			}
-			
-			if(M <= sum) left = mid + 1;
-			else right = mid - 1;
-		}
-		
-		System.out.println(right);		
-		in.close();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-	}
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
+        arr = new int[N+1];
+        int max = Integer.MIN_VALUE;
+
+        st = new StringTokenizer(br.readLine());
+        for(int i = 1 ; i <= N ; i ++){
+            arr[i] = Integer.parseInt(st.nextToken());
+            max = Math.max(max, arr[i]); // max 값 저장
+        }
+
+        Arrays.sort(arr); // 오름차순 정렬
+
+        System.out.println(binarySearch(max));
+    }
+
+    private static int binarySearch(int max) {
+        int s = 0;
+        int e = max;
+        int m = 0; // 자를 나무의 높이 선정
+
+        while(e >= s){
+            m = (s + e) / 2;
+
+            long res = 0;
+            long cnt = 0;
+            for(int i = 1 ; i <= N ; i ++){
+                if(arr[i] > m){
+                    res += arr[i];
+                    cnt ++;
+                }
+            }
+            res -= cnt * m;
+
+            if(res >= M) s = m + 1;
+            else e = m - 1;
+        }
+        return e;
+    }
 }
