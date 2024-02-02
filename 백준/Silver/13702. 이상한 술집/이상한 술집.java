@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     static StringBuilder sb = new StringBuilder();
     static int N, M;
-    static long[] arr;
+    static int[] arr;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -13,8 +13,8 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        arr = new long[N+1];
-        long max = Long.MIN_VALUE;
+        arr = new int[N+1];
+        int max = Integer.MIN_VALUE;
 
         for(int i = 1 ; i <= N ; i ++){
             arr[i] = Integer.parseInt(br.readLine());
@@ -24,7 +24,7 @@ public class Main {
         System.out.println(binarySearch(max));
     }
 
-    private static long binarySearch(long max) {
+    private static long binarySearch(int max) {
         long s = 1;
         long e = max;
         long m = 0; // 나눌 막걸리량(ml) 선정
