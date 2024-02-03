@@ -1,33 +1,40 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    private void solution() throws Exception {
+    static StringBuilder sb = new StringBuilder();
+    static int N, M;
+    static int[] arr;
+
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int[] arr = new int[5];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < 5; i++) arr[i] = Integer.parseInt(st.nextToken());
         StringBuilder sb = new StringBuilder();
+
+        int[] map = new int[5];
+        for (int i = 0; i < 5; i++)
+            map[i] = Integer.parseInt(st.nextToken());
+
+        String res = "1 2 3 4 5";
         while (true) {
-            boolean chk = false;
-            for (int i = 1; i < 5; i++) {
-                if (arr[i-1] > arr[i]) {
-                    int tmp = arr[i-1];
-                    arr[i-1] = arr[i];
-                    arr[i] = tmp;
-                    chk = true;
-                    for (int j = 0; j < 5; j++) sb.append(arr[j]).append(' ');
-                    sb.append('\n');
+            int cnt = 0;
+            boolean flag = true;
+            String cur = "";
+
+            for (int i = 0; i < 4; i++) {
+                if (map[i + 1] < map[i]){
+                    int tmp = map[i];
+                    map[i] = map[i+1];
+                    map[i+1] = tmp;
+                    flag = false;
+                    for(int j = 0 ; j < 5 ; j ++)
+                        sb.append(map[j]).append(" ");
+                    sb.append("\n");
                 }
             }
-            if (!chk) break;
-        }
-        System.out.print(sb);
-    }
 
-    public static void main(String[] args) throws Exception {
-        new Main().solution();
+            if(flag) break;
+        }
+        System.out.println(sb);
     }
 }
