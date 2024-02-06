@@ -26,15 +26,15 @@ public class Main {
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
-//            if (b > L) continue;
-            animals[i] = new Node(a, b);
+            if (b > L) continue;
+            animals[cnt ++] = new Node(a, b);
         }
 
+        Arrays.sort(shootingLocation);
+        
         int ans = 0;
-        for (int i = 0; i < N; i++){
-            if(animals[i].y > L) continue;
+        for (int i = 0; i < cnt; i++)
             ans += binarySearch(i);
-        }
 
         System.out.println(ans);
     }
@@ -54,7 +54,7 @@ public class Main {
             // 해당 범위내에 사대가 있다면 -> 잡힘
             if(res >= min && res <= max) return 1;
             // max 범위보다 크다면 -> e줄여 범위 줄이기
-            else if(res > max) e = m - 1;
+            else if(res >= max) e = m - 1;
             // min 범위보다 작다면 -> s늘려 범위 줄이기
             else s = m + 1;
         }
