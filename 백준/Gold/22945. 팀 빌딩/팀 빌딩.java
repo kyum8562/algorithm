@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+    static StringBuilder sb = new StringBuilder();
     static int N;
     static int[] map;
     public static void main(String[] args) throws IOException {
@@ -21,8 +22,7 @@ public class Main {
         int ans = 0, s = 0, e = N-1;
 
         while(e > s - 1){
-            int res = (e - s - 1) * Math.min(map[s], map[e]);
-            if(res > ans) ans = res;
+            ans = Math.max(ans, (e - s - 1) * Math.min(map[s], map[e]));
 
             if(map[e] > map[s]) s ++;
             else e --;
