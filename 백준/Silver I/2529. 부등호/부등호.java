@@ -44,7 +44,6 @@ public class Main {
 
     private static void perm(int depth) {
         if(depth == K){
-            String s = choice[0]+"";
             int val = choice[0];
             boolean flag = true;
             for(int i = 1 ; i < K ; i ++){
@@ -53,11 +52,14 @@ public class Main {
                     break;
                 }
 
-                s += choice[i];
                 val = choice[i];
             }
 
             if(flag){
+                String s = "";
+                for(int i: choice)
+                    s += i;
+
                 Long cur = Long.parseLong(s);
 
                 max = Math.max(max, cur);
