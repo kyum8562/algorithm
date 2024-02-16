@@ -27,16 +27,18 @@ public class Main {
 
     private static void perm(int depth) {
         if(depth == N){
-            String s = "";
             int sum = 0;
-
-            for(int i = 0 ; i < N ; i ++){
+            for(int i = 0 ; i < N ; i ++)
                 sum += choice[i];
-                if(choice[i] != 0) s += choice[i] + "+";
-            }
 
-            if(sum == N && !list.contains(s))
-                list.add(s);
+            if(sum == N) {
+                String s = "";
+                for(int i = 0 ; i < N ; i ++) {
+                    if(choice[i] != 0) s += choice[i] + "+";
+                }
+
+                if(!list.contains(s)) list.add(s);
+            }
 
             return;
         }
