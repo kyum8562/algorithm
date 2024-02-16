@@ -39,7 +39,6 @@ public class Main {
 
     private static void perm(int depth, int start, int height) {
         if(depth == height){
-            int cnt = 0;
             int rSum = 0, gSum = 0, bSum = 0;
 
             for(int i = 0 ; i < N ; i ++){
@@ -47,14 +46,12 @@ public class Main {
                     rSum += map[i].r;
                     gSum += map[i].g;
                     bSum += map[i].b;
-
-                    cnt ++;
                 }
             }
 
-            rSum /= cnt;
-            gSum /= cnt;
-            bSum /= cnt;
+            rSum /= height;
+            gSum /= height;
+            bSum /= height;
 
             int res = Math.abs(R-rSum) + Math.abs(G-gSum) + Math.abs(B-bSum);
             if(ans > res) ans = res;
