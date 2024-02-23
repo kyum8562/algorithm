@@ -10,8 +10,9 @@ public class Main {
             this.money = money;
         }
     }
-    static int N, ans = Integer.MIN_VALUE;
+    static int N;
     static Node[] map;
+    static int[] dp;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -24,19 +25,14 @@ public class Main {
             map[i] = new Node(a, b);
         }
 
-        dfs(1, 0);
-        System.out.println(ans);
-    }
-
-    private static void dfs(int day, int money) {
-        if(day >= N+1){
-            if(day == N+1) ans = Math.max(ans, money);
-            return;
+        dp = new int[N+2];
+        for(int day = 1 ; day <= N ; day ++){
+            Node curr = map[day];
+            if(day+curr.time <= N+1)
+                dp[day+curr.time] = Math.max(dp[day+curr.time], dp[day]+curr.money);
+            dp[day+1] = Math.max(dp[day+1], dp[day]);
         }
 
-        Node curr = map[day];
-        dfs(day+curr.time, money+curr.money);
-        dfs(day+1, money);
-
+        System.out.println(dp[N+1]);
     }
 }
