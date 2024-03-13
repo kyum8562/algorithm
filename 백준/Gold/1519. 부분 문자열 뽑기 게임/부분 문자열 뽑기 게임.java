@@ -2,53 +2,45 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+    static final int INF = Integer.MAX_VALUE;
+    static int N;
+    static Integer[] dp;
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        int N = Integer.parseInt(br.readLine());
 
-        if (N < 10) sb.append("-1");
-        else {
-            int[] dp = new int[N + 1];
+        N = Integer.parseInt(br.readLine());
 
-            for (int n = 10; n <= N; n++) {
-                String str = String.valueOf(n);
-                Set<String> set = new HashSet<>();
+        dp = new Integer[N+1];
 
-                for (int start = 0; start < str.length(); start++) {
-                    if (str.charAt(start) == '0') {
-                        continue;
-                    }
-
-                    String res = "";
-                    for (int i = start; i < str.length(); i++) {
-                        res += str.charAt(i);
-
-                        if (!res.equals(str)) {
-                            set.add(res);
-                        }
-                    }
-                }
-
-                Iterator<String> it = set.iterator();
-
-                int min = Integer.MAX_VALUE;
-                while (it.hasNext()) {
-                    int num = Integer.parseInt(str);
-                    int temp = Integer.parseInt(it.next());
-
-                    if (dp[num - temp] == 0) {
-                        min = Math.min(min, temp);
-                    }
-                }
-
-                if (min != Integer.MAX_VALUE)
-                    dp[n] = min;
-            }
-
-            sb.append(dp[N] == 0 ? "-1" : dp[N]).append("\n");
-        }
+        sb.append(recur(N)).append("\n");
         System.out.print(sb);
     }
 
+    private static int recur(int cur) {
+        if(cur == -1) return -1;
+
+        if(dp[cur] != null) return dp[cur];
+
+        int ret = INF;
+        int tmp;
+
+        String curS = String.valueOf(cur);
+        for (int i = 0; i < curS.length(); i ++) {
+            if(curS.charAt(i) == '0') continue;
+
+            for (int j = i + 1; j <= curS.length(); j++) {
+                tmp = Integer.parseInt(curS.substring(i, j));
+
+                if (tmp == cur) continue;
+
+                if (recur(cur - tmp) == -1)
+                    ret = Math.min(ret, tmp);
+            }
+        }
+
+        if(ret == INF) ret = -1;
+
+        return dp[cur] = ret;
+    }
 }
