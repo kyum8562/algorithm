@@ -1,22 +1,23 @@
 import java.io.*;
-import java.math.BigInteger;
 import java.util.*;
 
-public class Main {
+class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        Integer[] arr = new Integer[n];
-        
-        for (int i = 0; i < n; i++)
+
+        int N = Integer.parseInt(br.readLine());
+        int max = -(1 << 30);
+
+        int[] arr = new int[N];
+        for (int i = 0; i < N; i ++)
             arr[i] = Integer.parseInt(br.readLine());
-        
-        Arrays.sort(arr, Collections.reverseOrder());
-        
-        int ans = 0;
-        for (int i = 0; i < n; i++)
-            ans = Math.max(ans, arr[i] * (i+1));
-        
-        System.out.print(ans);
+
+        Arrays.sort(arr);
+
+        int idx = 1;
+        for (int i = N-1; i >= 0; i --)
+            max = Math.max(max, arr[i] * idx++);
+
+        System.out.println(max);
     }
 }
