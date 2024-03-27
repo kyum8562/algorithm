@@ -21,7 +21,7 @@ class Main {
 
         Arrays.sort(arr);
 
-        for(int i = 0 ; i < N ; i ++)
+        for(int i = 1 ; i < N ; i ++)
             ans += arr[i] * i;
 
         System.out.print(ans);
