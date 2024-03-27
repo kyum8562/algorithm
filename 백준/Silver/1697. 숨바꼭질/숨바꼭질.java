@@ -1,80 +1,58 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
-public class Main {
+class Main {
+    static int S, E;
+    static boolean[] v;
+    static int[] dd = {-1, 1, 2};
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb;
 
-	static Queue<Integer> q = new ArrayDeque<>();
-	static boolean[] isVisited;
-	static int K;
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		int N = stoi(st.nextToken());
-		K = stoi(st.nextToken());
-		isVisited = new boolean[100001];
-		
-		int ans = bfs(0, N);
-		
-		System.out.println(ans);
-	}
+        S = Integer.parseInt(st.nextToken());
+        E = Integer.parseInt(st.nextToken());
 
-	private static int bfs(int depth, int start) {
-		q.offer(start);
-		isVisited[start] = true;
-		
-		
-		a : while(!q.isEmpty()) {
-			int qSize = q.size();
-			for(int i = 0 ; i < qSize ; i ++) {
-				
-				int curr = q.poll();
-				if(curr == K) {
-					break a;
-				}
-				
-				int tmp = 0;
-				
-				for(int d = 0 ; d < 3 ; d ++) {
-					switch (d) {
-					case 0:
-						tmp = curr+1;
-						break;
-					case 1:
-						tmp = curr-1;
-						break;
-					default:
-						tmp = curr*2;
-						break;
-					}
-					if(!isVaild(tmp)) continue;
-					
-					if(!isVisited[tmp]) {
-						q.offer(tmp);
-						isVisited[tmp] = true;
-					}
-				}
-			}
-			depth++;
-		}
-		return(depth);
-	}
+        v = new boolean[100002];
 
-	static int stoi(String s) {
-		return Integer.parseInt(s);
-	}
-	
-	static boolean isVaild(int curr) {
-		if(curr >= 0 && curr < 100001) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
+        bfs();
+    }
+
+    private static void bfs() {
+        Queue<Integer> q = new ArrayDeque<>();
+
+        int cnt = 0;
+
+        v[S] = true;
+        q.offer(S);
+
+        while (!q.isEmpty()) {
+            int qSize = q.size();
+
+            for (int i = 0 ; i < qSize ; i++) {
+                int cur = q.poll();
+
+                if (cur == E) {
+                    System.out.println(cnt);
+                    return;
+                }
+
+                for (int d = 0 ; d < 3 ; d ++) {
+                    int nn;
+
+                    if (d == 2)
+                        nn = cur * dd[d];
+                    else
+                        nn = cur + dd[d];
+
+                    if (nn > 100000 || nn < 0 || v[nn]) continue;
+
+                    v[nn] = true;
+                    q.offer(nn);
+                }
+            }
+
+            cnt++;
+        }
+    }
 }
