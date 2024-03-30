@@ -25,7 +25,7 @@ class Main {
     }
 
     private static int bfs() {
-        PriorityQueue<Integer> q = new PriorityQueue<>((o1, o2) -> o1 - o2);
+        Queue<Integer> q = new LinkedList<>();
 
         dp[0] = 0;
         q.offer(0);
