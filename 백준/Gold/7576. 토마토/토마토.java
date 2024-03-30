@@ -1,84 +1,74 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
-	static int N, M, ans = Integer.MIN_VALUE;
-	static int[][] map;
-	static boolean[][] isVisited;
+class Main {
+    static int N, M, zeroCnt;
+    static int[][] arr;
+    static Queue<Node> q = new ArrayDeque<>();
     static int[] dr = {-1, 0, 1, 0};
     static int[] dc = {0, 1, 0, -1};
-    static Queue<Coords> q;
-	public static void main(String[] args) throws Exception{
+    static StringBuilder sb = new StringBuilder();
+
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+
         M = Integer.parseInt(st.nextToken());
         N = Integer.parseInt(st.nextToken());
-        
-        map = new int[N][M];
-//        isVisited = new boolean[N][M];
-        q = new ArrayDeque<>();
-        for(int i = 0 ; i < N ; i ++) {
-        	st = new StringTokenizer(br.readLine());
-        	for(int j = 0 ; j < M ; j ++) {
-        		int tmp = Integer.parseInt(st.nextToken());
-        		map[i][j] = tmp;
-        		if(tmp == 1)
-        			q.offer(new Coords(i, j));
-        	}
+        boolean flag = true;
+
+        arr = new int[N][M];
+
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < M; j++) {
+                int tmp = Integer.parseInt(st.nextToken());
+                arr[i][j] = tmp;
+                if (tmp == 0) {
+                    flag = false;
+                    zeroCnt++;
+                } else if (tmp == 1)
+                    q.offer(new Node(i, j));
+            }
         }
+
+        if (flag) System.out.println(0);
+        else System.out.println(bfs());
         
-        bfs();
-        mapCheck();
-        if(ans == -1) System.out.println(-1);
-        else System.out.println(ans-1);
-	}
-	
-    static void mapCheck() {
-    	for(int i = 0 ; i < N ; i ++) {
-        	for(int j = 0 ; j < M ; j ++) {
-        		if(map[i][j] == 0) {
-        			ans = -1;
-        			return;
-        		}
-        		if(map[i][j] > ans) {
-        			ans = map[i][j];
-        		}
-        	}
-    	}
-	}
+    }
 
-	static void bfs() {
-    	
-    	while(!q.isEmpty()) {
-    		Coords curr = q.poll();
-//    		isVisited[curr.r][curr.c] = true;
-    		
-    		for(int d = 0 ; d < 4 ; d ++) {
-    			int nr = curr.r + dr[d];
-    			int nc = curr.c + dc[d];
-    			
-    			if(isVaild(nr, nc)) {
-    				if(map[nr][nc] == 0) {
-    					q.offer(new Coords(nr, nc));
-    					map[nr][nc]  = map[curr.r][curr.c] + 1 ;
-    				}
-    			}
-    		}
-    	}
-	}
+    private static int bfs() {
+        int max = - (1 << 30);
 
-	static class Coords{
-        int r;
-        int c;
+        while (!q.isEmpty()) {
+            Node cur = q.poll();
 
-        public Coords(int r, int c) {
+            for (int d = 0; d < 4; d++) {
+                int nr = cur.r + dr[d];
+                int nc = cur.c + dc[d];
+
+                if (!isValid(nr, nc) || arr[nr][nc] != 0) continue;
+
+                q.offer(new Node(nr, nc));
+                arr[nr][nc] = arr[cur.r][cur.c] + 1;
+                max = Math.max(max, arr[nr][nc]);
+                zeroCnt --;
+            }
+        }
+
+        return zeroCnt == 0 ? max-1 : -1;
+    }
+
+    private static boolean isValid(int nr, int nc) {
+        return (nr >= 0 && nr < N && nc >= 0 && nc < M);
+    }
+
+    static class Node {
+        int r, c;
+
+        public Node(int r, int c) {
             this.r = r;
             this.c = c;
         }
     }
-
-    static boolean isVaild(int nr, int nc) {
-        return (nr>=0 && nr<N && nc>=0 && nc<M);
-    }
-
 }
