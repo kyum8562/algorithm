@@ -2,9 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static Integer[] arr;
-    static long[] size;
-    static List<Long> ans;
+    static int[] size;
     static List<Integer>[] list;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,9 +13,7 @@ public class Main {
         int R = Integer.parseInt(st.nextToken());
         int Q = Integer.parseInt(st.nextToken());
 
-        size = new long[N+1];
-        arr = new Integer[N-1];
-        ans = new ArrayList<>();
+        size = new int[N+1];
         list = new ArrayList[N+1];
 
         for(int i = 1 ; i <= N ; i ++){
