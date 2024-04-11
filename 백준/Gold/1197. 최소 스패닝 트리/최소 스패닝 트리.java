@@ -2,62 +2,67 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int V, E, ans;
-    static List<Node>[] graph;
-    static boolean[] v;
-    static class Node{
-        int node;
-        int dist;
-        public Node(int node, int dist){
-            this.node = node;
-            this.dist = dist;
-        }
-    }
+    static int[] parents;
+    static List<Node> list;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
 
-        V = Integer.parseInt(st.nextToken());
-        E = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
 
-        graph = new ArrayList[V+1];
-        v = new boolean[V+1];
+        list = new ArrayList<>();
+        parents = new int[N+1];
 
-        for(int i = 1 ; i <= V ; i ++) graph[i] = new ArrayList<>();
+        for(int i = 1 ; i <= N ; i ++)
+            parents[i] = i;
 
-        for(int i = 1 ; i <= E ; i ++){
+        for(int i = 0 ; i < M ; i ++){
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             int d = Integer.parseInt(st.nextToken());
 
-            graph[a].add(new Node(b, d));
-            graph[b].add(new Node(a, d));
+            list.add(new Node(a, b, d));
         }
-        
-        prim(1);
-        System.out.println(ans);
+
+        Collections.sort(list);
+
+        // 크루스칼
+        int ans = 0;
+        for(Node cur: list){
+            if(find(cur.a) == find(cur.b)) continue;
+            union(cur.a, cur.b);
+            ans += cur.d;
+        }
+
+        System.out.print(ans);
     }
 
-    private static void prim(int start) {
-        PriorityQueue<Node> pq = new PriorityQueue<>( (o1, o2) -> o1.dist - o2.dist);
+    private static void union(int x, int y) {
+        x = find(x);
+        y = find(y);
 
-        pq.add(new Node(start, 0));
+        if(x != y) parents[y] = x;
+    }
 
-        while(!pq.isEmpty()){
-            Node curr = pq.poll();
-            int node = curr.node;
-            int dist = curr.dist;
+    private static int find(int x) {
+        if(x == parents[x]) return x;
+        else return parents[x] = find(parents[x]);
+    }
 
-            if(v[node]) continue;
-            v[node] = true;
-            ans += dist;
-
-            for(Node next: graph[node]){
-                if(!v[next.node]) pq.add(next);
-            }
-
+    static class Node implements Comparable<Node>{
+        int a, b, d;
+        public Node(int a, int b, int d){
+            this.a = a;
+            this.b = b;
+            this.d = d;
         }
 
+        @Override
+        public int compareTo(Node o){
+            return this.d - o.d;
+        }
     }
 }
