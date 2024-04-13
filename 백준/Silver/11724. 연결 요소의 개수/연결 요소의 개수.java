@@ -1,59 +1,52 @@
 import java.io.*;
 import java.util.*;
 
-class Main {
-    static boolean[] v;
-    static List<Integer>[] list;
+public class Main {
+    static int[] parents;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-//        StringBuilder sb = new StringBuilder();
 
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
+        int ans = 0;
 
-        list = new ArrayList[N+1];
+        parents = new int[N+1];
+
         for(int i = 1 ; i <= N ; i ++)
-            list[i] = new ArrayList<>();
-
-        v = new boolean[N+1];
-
-        int ans = 0; // 연결 요소의 개수
+            parents[i] = i;
 
         for(int i = 0 ; i < M ; i ++){
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
-            list[a].add(b);
-            list[b].add(a);
+            if(find(a) != find(b)) union(a, b);
         }
 
+
+        Map<Integer, Boolean> map = new LinkedHashMap<>();
         for(int i = 1 ; i <= N ; i ++){
-            if(v[i]) continue;
+            int cur = find(parents[i]);
+            if(map.getOrDefault(cur, false)) continue;
 
+            map.put(cur, true);
             ans ++;
-
-            dfs(i);
         }
 
         System.out.print(ans);
     }
 
-    private static void dfs(int cur) {
-        v[cur] = true;
+    private static void union(int x, int y) {
+        x = find(x);
+        y = find(y);
 
-        for(int next: list[cur]){
-            if(v[next]) continue;
-
-            dfs(next);
-        }
+        if(x > y) parents[x] = y;
+        else parents[y] = x;
     }
-    static class Node{
-        int r, c;
-        public Node(int r, int c){
-            this.r = r;
-            this.c = c;
-        }
+
+    private static int find(int x) {
+        if(x == parents[x]) return x;
+        return parents[x] = find(parents[x]);
     }
 }
