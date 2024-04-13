@@ -9,7 +9,6 @@ public class Main {
 
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
-        int ans = 0;
 
         parents = new int[N+1];
 
@@ -25,16 +24,12 @@ public class Main {
         }
 
 
-        Map<Integer, Boolean> map = new LinkedHashMap<>();
+        Set<Integer> set = new LinkedHashSet<>();
         for(int i = 1 ; i <= N ; i ++){
-            int cur = find(parents[i]);
-            if(map.getOrDefault(cur, false)) continue;
-
-            map.put(cur, true);
-            ans ++;
+            set.add(find(parents[i]));
         }
 
-        System.out.print(ans);
+        System.out.print(set.size());
     }
 
     private static void union(int x, int y) {
