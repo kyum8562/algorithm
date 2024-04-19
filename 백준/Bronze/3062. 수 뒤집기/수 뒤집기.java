@@ -14,14 +14,14 @@ public class Main {
             for(int j = cur.length()-1 ; j >= 0 ; j --)
                 cur2 += cur.charAt(j);
 
-            int res = Integer.parseInt(cur) + Integer.parseInt(cur2);
-            String res2 = String.valueOf(res);
+            String res = String.valueOf(Integer.parseInt(cur) + Integer.parseInt(cur2));
 
             int l = 0;
-            int r = res2.length()-1;
+            int r = res.length()-1;
             boolean flag = true;
+
             while(r > l){
-                if(res2.charAt(l++) != res2.charAt(r--)){
+                if(res.charAt(l++) != res.charAt(r--)){
                     flag = false;
                     break;
                 }
@@ -30,6 +30,6 @@ public class Main {
             sb.append(flag ? "YES" : "NO").append("\n");
         }
 
-        System.out.println(sb);
+        System.out.print(sb);
     }
 }
