@@ -9,9 +9,9 @@ class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
 
+        dp = new long[31][31];
         while(true){
             N = Integer.parseInt(br.readLine());
-            dp = new long[N+1][N+1];
 
             if(N == 0) break;
 
