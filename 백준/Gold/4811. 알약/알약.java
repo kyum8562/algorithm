@@ -7,6 +7,7 @@ class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
 
         dp = new long[31][31];
@@ -18,7 +19,10 @@ class Main {
             sb.append(recur(N, 0)).append("\n");
         }
 
-        System.out.print(sb);
+        bw.write(String.valueOf(sb));
+        bw.flush();
+        bw.close();
+        br.close();
     }
 
     private static long recur(int defCnt, int brokenCnt) {
