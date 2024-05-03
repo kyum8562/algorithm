@@ -3,7 +3,6 @@ import java.util.*;
 
 class Main {
     static int N;
-    static char[] choice;
     static long[][] dp;
 
     public static void main(String[] args) throws IOException {
@@ -11,13 +10,12 @@ class Main {
         StringBuilder sb = new StringBuilder();
 
         while(true){
-            N = Integer.parseInt(br.readLine()) * 2;
-            choice = new char[N+1];
+            N = Integer.parseInt(br.readLine());
             dp = new long[N+1][N+1];
 
             if(N == 0) break;
 
-            sb.append(recur(N/2, 0)).append("\n");
+            sb.append(recur(N, 0)).append("\n");
         }
 
         System.out.print(sb);
