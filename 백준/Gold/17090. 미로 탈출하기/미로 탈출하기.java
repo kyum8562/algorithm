@@ -3,8 +3,7 @@ import java.util.*;
 
 class Main {
     static int N, M;
-    static char[][] arr;
-    static int[][] dp;
+    static int[][] arr, dp;
     static boolean[][] v;
     static int[] dr = {-1, 0, 1, 0};
     static int[] dc = {0, 1, 0, -1};
@@ -17,14 +16,14 @@ class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        arr = new char[N][M];
+        arr = new int[N][M];
         dp = new int[N][M];
         v = new boolean[N][M];
 
         for(int i = 0 ; i < N ; i ++) {
             String s = br.readLine();
             for (int j = 0; j < M; j++)
-                arr[i][j] = s.charAt(j);
+                arr[i][j] = getDir(s.charAt(j));
         }
 
         int cnt = 0;
@@ -52,7 +51,7 @@ class Main {
         else v[r][c] = true;
 
 
-        int d = getDir(arr[r][c]);
+        int d = arr[r][c];
 
         int nr = r + dr[d];
         int nc = c + dc[d];
