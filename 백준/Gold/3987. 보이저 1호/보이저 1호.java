@@ -7,7 +7,6 @@ public class Main {
     static char[][] arr;
     static int[] dr = {-1, 0, 1, 0};
     static int[] dc = {0, 1, 0, -1};
-    static boolean[][] v;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -32,7 +31,6 @@ public class Main {
         int dir = 4;
 
         for(int i = 0 ; i < 4 ; i ++){
-            v = new boolean[R][C];
             int res = bfs(sr, sc, i);
 
             if(res == INF){
@@ -60,7 +58,6 @@ public class Main {
         Queue<Node> q = new ArrayDeque<>();
 
         int max = 1;
-        v[sr][sc] = true;
         q.offer(new Node(sr, sc, sd, 1));
 
         while(!q.isEmpty()){
@@ -77,8 +74,6 @@ public class Main {
             int nc = cur.c + dc[cur.d];
 
             if(!isValid(nr, nc) || arr[nr][nc] == 'C') break;
-
-            v[nr][nc] = true;
 
             q.offer(new Node(nr, nc, arr[nr][nc] == '.' ? cur.d : parsingD(cur.d, arr[nr][nc]), cur.t+1));
         }
