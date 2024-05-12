@@ -2,10 +2,10 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int ans;
-    static int[] ch;
-    static boolean[][] v;
+    static int ans, sr, sc;
+    static boolean[][] v, v2;
     static char[][] arr;
+    static Queue<Node> q = new ArrayDeque<>();
     static int[] dr = {-1, 0, 1, 0};
     static int[] dc = {0, 1, 0, -1};
     public static void main(String[] args) throws IOException {
@@ -14,7 +14,6 @@ public class Main {
         StringTokenizer st;
 
         ans = 0;
-        ch = new int[7];
         arr = new char[5][5];
         v = new boolean[5][5];
 
@@ -35,20 +34,18 @@ public class Main {
         // 7명이 구성되었다면(임도연파 3명이하)
         if(depth == 7){
             // bfs 탐색을 통해서 연결되었는지 확인
-            outer: for(int i = 0 ; i < 5 ; i ++){
-                for(int j = 0 ; j < 5 ; j ++){
-                    if(v[i][j]){
-                        if(bfs(i, j)) ans++;
-                        break outer;
-                    }
-                }
-            }
+            if(bfs(sr, sc)) ans++;
             return;
         }
 
         for(int i = start ; i <= 24 ; i ++){
             int r = i / 5;
             int c = i % 5;
+
+            if(depth == 0){
+                sr = r;
+                sc = c;
+            }
 
             v[r][c] = true;
 
@@ -63,8 +60,8 @@ public class Main {
     }
 
     private static boolean bfs(int i, int j) {
-        Queue<Node> q = new ArrayDeque<>();
-        boolean[][] v2 = new boolean[5][5];
+        q = new ArrayDeque<>();
+        v2 = new boolean[5][5];
 
         v2[i][j] = true;
         q.offer(new Node(i, j));
