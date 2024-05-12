@@ -5,7 +5,7 @@ public class Main {
     static int ans, sr, sc;
     static boolean[][] v, v2;
     static char[][] arr;
-    static Queue<Node> q = new ArrayDeque<>();
+    static Queue<int[]> q = new ArrayDeque<>();
     static int[] dr = {-1, 0, 1, 0};
     static int[] dc = {0, 1, 0, -1};
     public static void main(String[] args) throws IOException {
@@ -64,23 +64,21 @@ public class Main {
         v2 = new boolean[5][5];
 
         v2[i][j] = true;
-        q.offer(new Node(i, j));
+        q.offer(new int[] {i, j});
         int res = 1;
 
         while(!q.isEmpty()){
-            Node cur = q.poll();
-            int r = cur.r;
-            int c = cur.c;
+            int[] cur = q.poll();
 
             for(int d = 0 ; d < 4 ; d ++){
-                int nr = r + dr[d];
-                int nc = c + dc[d];
+                int nr = cur[0] + dr[d];
+                int nc = cur[1] + dc[d];
 
                 if(!isValid(nr, nc) || v2[nr][nc] || !v[nr][nc]) continue;
 
                 res ++;
                 v2[nr][nc] = true;
-                q.offer(new Node(nr, nc));
+                q.offer(new int[]{nr, nc});
             }
         }
 
@@ -89,12 +87,5 @@ public class Main {
 
     private static boolean isValid(int nr, int nc) {
         return (nr>=0 && nr<5 && nc>=0 && nc<5);
-    }
-    static class Node{
-        int r, c;
-        public Node(int r, int c){
-            this.r = r;
-            this.c = c;
-        }
     }
 }
