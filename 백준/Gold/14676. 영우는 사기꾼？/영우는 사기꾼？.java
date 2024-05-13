@@ -4,7 +4,6 @@ import java.util.*;
 public class Main {
     static int[] createdCnt, in;
     static List<Integer>[] list;
-    static Set<Integer>[] set;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -13,15 +12,12 @@ public class Main {
         int M = Integer.parseInt(st.nextToken()); // 간선 수
         int K = Integer.parseInt(st.nextToken()); // 쿼리
 
-        createdCnt = new int[N+1];
         in = new int[N+1];
+        createdCnt = new int[N+1];
         list = new ArrayList[N+1];
-        set = new LinkedHashSet[N+1];
 
-        for(int i = 1 ; i <= N ; i ++){
+        for(int i = 1 ; i <= N ; i ++)
             list[i] = new ArrayList<>();
-            set[i] = new LinkedHashSet<>();
-        }
 
         for(int i = 0 ; i < M ; i ++){
             st = new StringTokenizer(br.readLine());
@@ -43,12 +39,8 @@ public class Main {
                 createdCnt[cur] ++;
 
                 // cur이 선행되어야 하는 건물에 대해 => 해금(cur 생성 완료에 해당하는 조치)
-                for(int next: list[cur]){
-                    if(set[next].contains(cur)) continue;
-                    set[next].add(cur);
-
-                    // 진입차수 감소
-                    if(in[next] > 0) in[next]--;
+                if(createdCnt[cur] == 1){
+                    for(int next: list[cur]) in[next]--;
                 }
             }
             // 건물을 파괴 => 해금을 다시 원래대로 복기
@@ -58,10 +50,7 @@ public class Main {
                 if(createdCnt[cur] != 0) continue;
 
                 // 원래대로 돌리기
-                for(int next: list[cur]) {
-                    set[next].clear();
-                    in[next] ++;
-                }
+                for(int next: list[cur]) in[next] ++;
             }
             // 건설 or 파괴가 불가능하다면
             else{
@@ -71,12 +60,5 @@ public class Main {
         }
 
         System.out.println(flag ? "King-God-Emperor" : "Lier!");
-    }
-
-    private static boolean isCreate(int n) {
-        for(int next: list[n])
-            if(createdCnt[next] == 0) return false;
-
-        return true;
     }
 }
