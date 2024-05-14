@@ -27,15 +27,16 @@ public class Main {
         System.out.println(bfs());
     }
 
-    private static long bfs() {
+    private static int bfs() {
         PriorityQueue<Node> q = new PriorityQueue<>();
         q.offer(new Node(0, 0, 0));
+
+        v[0][0] = true;
         int res = 0;
 
         while(!q.isEmpty()){
             Node cur = q.poll();
 
-            v[cur.r][cur.c] = true;
             res = Math.max(res, cur.d);
 
             if(cur.r == N-1 && cur.c == N-1) break;
@@ -46,6 +47,7 @@ public class Main {
 
                 if(!isValid(nr, nc) || v[nr][nc]) continue;
 
+                v[cur.r][cur.c] = true;
                 q.offer(new Node(nr, nc, Math.abs(arr[nr][nc] - arr[cur.r][cur.c])));
             }
         }
