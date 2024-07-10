@@ -27,7 +27,7 @@ public class Main {
     private static int bs(int s, int e, int tgt) {
         int m, ans = 0;
 
-        while(e >= s){
+        while(e > s){
             m = (s + e) / 2;
 
             // m 일때의 결과 값
@@ -38,7 +38,7 @@ public class Main {
                 s = m + 1;
                 ans = m;
             }
-            else e = m - 1;
+            else e = m;
         }
 
         return ans;
