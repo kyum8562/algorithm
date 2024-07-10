@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int N, T, ans;
+    static int N, T;
     static List<Integer>[] list;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -11,77 +11,75 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         T = Integer.parseInt(st.nextToken());
 
-        list = new ArrayList[T+1];
-        for(int i = 0 ; i <= T ; i ++)
+        list = new ArrayList[T + 1];
+        for (int i = 0; i <= T; i++)
             list[i] = new ArrayList<>();
 
         boolean isGame = false;
 
-        for(int i = 0 ; i < N ; i ++){
+        for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             int r = Integer.parseInt(st.nextToken());
             int c = Integer.parseInt(st.nextToken());
 
-            if(c == T) isGame = true;
+            if (c == T) isGame = true;
 
             list[c].add(r);
         }
 
-        if(!isGame) System.out.print(-1);
-        else bfs();
-
-        System.out.print(ans == 0 ? -1 : ans);
+        if (!isGame) System.out.print(-1);
+        else System.out.print(bfs());
     }
 
-    private static void bfs() {
-        PriorityQueue<Node> q = new PriorityQueue<>();
-        q.offer(new Node(0, 0, 0));
+    private static int bfs() {
+        Queue<Node> q = new ArrayDeque<>();
+        q.offer(new Node(0, 0));
 
         List<Integer> next;
+        int cnt = 0;
 
-        while(!q.isEmpty()){
-            Node cur = q.poll();
-            int r = cur.r;
-            int c = cur.c;
+        while (!q.isEmpty()) {
+            int qSize = q.size();
 
-            if(c == T){
-                ans = cur.d;
-                return;
-            }
+            for (int i = 0; i < qSize; i++) {
+                Node cur = q.poll();
+                int r = cur.r;
+                int c = cur.c;
 
-            for(int nc = c - 2 ; nc <= c + 2 ; nc ++) {
-                if(!isValid(nc)) continue;
+                if (c == T) return cnt;
 
-                next = list[nc];
+                for (int nc = c - 2; nc <= c + 2; nc++) {
+                    if (!isValid(nc)) continue;
 
-                for (int j = 0; j < next.size(); j++) {
-                    int nr = next.get(j);
-                    if(Math.abs(nr - r) > 2) continue;
+                    next = list[nc];
 
-                    next.remove(j);
-                    q.add(new Node(nr, nc, cur.d+1));
-                    j--;
+                    for (int j = 0; j < next.size(); j++) {
+                        int nr = next.get(j);
+                        if (Math.abs(nr - r) > 2) continue;
+
+                        next.remove(j);
+                        q.add(new Node(nr, nc));
+                        j--;
+                    }
                 }
-
             }
+
+            cnt ++;
         }
+
+        return -1;
     }
 
     private static boolean isValid(int nc) {
         return nc >= 0 && nc <= T;
     }
 
-    static class Node implements Comparable<Node>{
-        int r, c, d;
-        public Node(int r, int c, int d){
+    static class Node{
+        int r, c;
+
+        public Node(int r, int c) {
             this.r = r;
             this.c = c;
-            this.d = d;
-        }
-
-        @Override
-        public int compareTo(Node o){
-            return this.d - o.d;
         }
     }
 }
