@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
     static int N, M;
-    static int[] arr, minArr, maxArr;
+    static int[] arr;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -13,19 +13,12 @@ public class Main {
 
         int sum = 0;
         arr = new int[N];
-        minArr = new int[N];
-        maxArr = new int[N];
-
-        Arrays.fill(minArr, 1 << 30);
 
         st = new StringTokenizer(br.readLine());
         for(int i = 0 ; i < N ; i ++){
             int tmp = Integer.parseInt(st.nextToken());
             arr[i] = tmp;
             sum += tmp;
-
-            minArr[i] = Math.min(minArr[i], tmp);
-            maxArr[i] = Math.min(maxArr[i], tmp);
         }
 
         System.out.println(bs(sum));
