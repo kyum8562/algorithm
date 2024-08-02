@@ -2,24 +2,27 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int N, M;
-    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st;
 
-        int[] prefixSum = new int[N+1]; // 패딩
-        int[] map = new int[N+1]; // 패딩
-        for (int i = 1; i <= N; i++) {
-            map[i] = Integer.parseInt(st.nextToken());
-            prefixSum[i] = prefixSum[i-1] + map[i];
+        int N = Integer.parseInt(br.readLine());
+        long sum = 0L;
+
+        int[] arr = new int[N+1];
+        int[] prefixSum = new int[N+1];
+
+        st = new StringTokenizer(br.readLine());
+        for(int i = 1 ; i <= N ; i ++){
+            int tmp = Integer.parseInt(st.nextToken());
+            arr[i] = tmp;
+            prefixSum[i] = prefixSum[i-1] + tmp;
         }
-        long sum = 0;
-        for (int i = 1; i < N ; i++) {
-            sum += (prefixSum[N] - prefixSum[i])*map[i];
-        }
+
+        for(int i = 1 ; i < N ; i ++)
+            sum += (prefixSum[N] - prefixSum[i]) * arr[i];
+
         System.out.println(sum);
     }
 }
